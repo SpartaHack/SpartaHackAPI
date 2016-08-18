@@ -41,10 +41,12 @@ group :development do
 end
 
 group :test do
-  gem "rspec-rails"
+  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+      gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'master'
+  end
   gem "factory_girl_rails"
   gem 'ffaker'
-  gem "shoulda-matchers"
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 gem "devise"
