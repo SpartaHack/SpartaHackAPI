@@ -67,5 +67,8 @@ RSpec.configure do |config|
     include_default_accept_headers
   end
 
+
+  config.include(Shoulda::Matchers::ActiveModel, type: :model)
+  config.include(Shoulda::Matchers::ActiveRecord, type: :model)
   config.include(Shoulda::Matchers::ActionController, { type: :model, file_path: /spec\/controllers/})
 end
