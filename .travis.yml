@@ -23,4 +23,8 @@ rvm:
   - 2.2.5
 
 notifications:
-  slack: spartahack2017:j6Ho5wAliKtgvNWXjYNLDH3i
+  slack:
+    rooms:
+      - spartahack2017:j6Ho5wAliKtgvNWXjYNLDH3i#web
+    on_success: never
+    on_failure: always
