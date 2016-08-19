@@ -16,6 +16,10 @@ Open terminal and run the following commands in order to install Command Line To
     xcode-select --install
     
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    
+You'll also need some extra libraries installed:
+
+    brew install libtool libxslt libksba openssl
 
 ##### Install RVM
 Open terminal and run the following command
@@ -26,7 +30,7 @@ Close and reopen terminal. Run the following commands
     
     rvm install 2.2.5
 
-    rvm --default use 2.1.5
+    rvm --default use 2.2.5
 
 And then execute:
 
