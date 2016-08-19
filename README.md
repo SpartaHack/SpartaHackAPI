@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.org/bogdanpozderca/SpartaHack-API.svg?branch=master)](https://travis-ci.org/bogdanpozderca/SpartaHack-API)
+[![Code Climate](https://codeclimate.com/github/bogdanpozderca/SpartaHack-API/badges/gpa.svg)](https://codeclimate.com/github/bogdanpozderca/SpartaHack-API)
+[![Test Coverage](https://codeclimate.com/github/bogdanpozderca/SpartaHack-API/badges/coverage.svg)](https://codeclimate.com/github/bogdanpozderca/SpartaHack-API/coverage)
+[![Issue Count](https://codeclimate.com/github/bogdanpozderca/SpartaHack-API/badges/issue_count.svg)](https://codeclimate.com/github/bogdanpozderca/SpartaHack-API)
+
 # SpartaHack API
 ****
 
@@ -26,6 +31,11 @@ Close and reopen terminal. Run the following commands
 And then execute:
 
     gem install bundle
+    
+After which we update the gems on the whole system:
+
+    gem update --system
+
 
 ##### Install Postgres
 Run the following commands in terminal
@@ -41,9 +51,9 @@ Open the app and click on `Open psql`. A terminal window should pop up.
 
 Run the following commands
 
-    CREATE ROLE "dev" NOSUPERUSER CREATEDB NOCREATEROLE INHERIT LOGIN;
+    CREATE ROLE dev NOSUPERUSER CREATEDB NOCREATEROLE INHERIT LOGIN;
 
-    ALTER ROLE pguser WITH PASSWORD 'spartahack-api';
+    ALTER ROLE dev WITH PASSWORD 'spartahack-api';
     
 **Postgres must be running in the background to run SpartaHack API locally.**
 
