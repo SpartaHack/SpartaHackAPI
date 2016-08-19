@@ -21,3 +21,6 @@ install:
 
 rvm:
   - 2.2.5
+
+notifications:
+  slack: spartahack2017:j6Ho5wAliKtgvNWXjYNLDH3i
