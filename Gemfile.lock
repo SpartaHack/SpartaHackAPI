@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rspec/rspec-core.git
-  revision: b54e2a161b7de5e6cfdcfde9abce2ea3cec10b82
+  revision: 910eb7fb3184ea23a8cd8bd13b14ac84ca39664c
   branch: master
   specs:
     rspec-core (3.6.0.pre)
@@ -208,7 +208,7 @@ GEM
     tilt (2.0.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (3.0.1)
+    uglifier (3.0.2)
       execjs (>= 0.3.0, < 3)
     warden (1.2.6)
       rack (>= 1.0)
