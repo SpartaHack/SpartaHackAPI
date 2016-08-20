@@ -4,7 +4,7 @@ class Api::V1::UsersController < ApplicationController
 
   def show
     if User.exists? id: params[:id] 
-      respond_with User.find(params[:id]) 
+      render json: User.find(params[:id]), status: 200
     else
       render json: { errors: "User does not exist" }, status: 422
     end
