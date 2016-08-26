@@ -1,4 +1,5 @@
 class Api::V1::UsersController < ApplicationController
+  before_action :restrict_access, only: [:show, :create]
   before_action :authenticate_with_token!, only: [:update, :destroy]
   respond_to :json
 
@@ -38,5 +39,5 @@ class Api::V1::UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation) 
-    end
+    end  
 end
