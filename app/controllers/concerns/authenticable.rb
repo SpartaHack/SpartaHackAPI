@@ -16,7 +16,7 @@ module Authenticable
   end
 
   def restrict_access
-    authenticate_or_request_with_http_token do |token, options|
+    authenticate_or_request_with_http_token do |token|
       ApiKey.exists?(access_token: token)
     end
   end  
