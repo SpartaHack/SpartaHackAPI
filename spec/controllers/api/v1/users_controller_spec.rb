@@ -5,18 +5,33 @@ describe Api::V1::UsersController do
   before {request.headers["HTTP_AUTHORIZATION"] = "Token token=\"#{api_key.access_token}\"" }
 
   describe "GET #show" do
-    before(:each) do 
-      @user = FactoryGirl.create :user
-      get :show, {id: @user.id}
+    context "when user id exists" do
+      before(:each) do 
+        @user = FactoryGirl.create :user
+        get :show, {id: @user.id}
 
+      end
+
+      it "returns the information about a reporter on a hash" do
+        user_response = json_response
+        expect(user_response[:email]).to eql @user.email
+      end
+
+      it { should respond_with 200 }
     end
 
-    it "returns the information about a reporter on a hash" do
-      user_response = json_response
-      expect(user_response[:email]).to eql @user.email
-    end
+    context "when user id does not exist" do
+      before(:each) do 
+        get :show, {id: 999999999}
+      end
 
-    it { should respond_with 200 }
+      it "returns an error" do
+        user_response = json_response
+        expect(user_response[:errors]).to eql "User does not exist"
+      end
+
+      it { should respond_with 422 }
+    end
   end
 
   describe "POST #create" do
