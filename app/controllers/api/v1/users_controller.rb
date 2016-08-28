@@ -1,10 +1,11 @@
 class Api::V1::UsersController < ApplicationController
+  before_action :restrict_access, only: [:show, :create]
   before_action :authenticate_with_token!, only: [:update, :destroy]
   respond_to :json
 
   def show
     if User.exists? id: params[:id] 
-      respond_with User.find(params[:id]) 
+      render json: User.find(params[:id]), status: 200
     else
       render json: { errors: "User does not exist" }, status: 422
     end
@@ -38,5 +39,5 @@ class Api::V1::UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation) 
-    end
+    end  
 end

@@ -23,6 +23,7 @@ module SpartaHackApi
     # -- all .rb files in that directory are automatically loaded.
     
     # don't generate RSpec tests for views and helpers
+    config.api_only = true
     config.generators do |g|
       g.test_framework :rspec, fixture: true
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
