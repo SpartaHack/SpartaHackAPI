@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rspec/rspec-core.git
-  revision: b54e2a161b7de5e6cfdcfde9abce2ea3cec10b82
+  revision: 2a6bff1d2b7592898d79065c0038e25a18996d6f
   branch: master
   specs:
     rspec-core (3.6.0.pre)
@@ -26,7 +26,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-rails.git
-  revision: a858f3c74f977687c21bad88cbc2ff82b81fbb5b
+  revision: e8054a1cd03044f725030fe8315952cf3799a395
   branch: master
   specs:
     rspec-rails (3.6.0.pre)
@@ -208,7 +208,7 @@ GEM
     tilt (2.0.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (3.0.1)
+    uglifier (3.0.2)
       execjs (>= 0.3.0, < 3)
     warden (1.2.6)
       rack (>= 1.0)

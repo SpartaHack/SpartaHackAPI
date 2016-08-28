@@ -1,4 +1,5 @@
 class Api::V1::SessionsController < ApplicationController
+  before_action :restrict_access
   respond_to :json
 
   def create 
@@ -23,4 +24,5 @@ class Api::V1::SessionsController < ApplicationController
     user.save
     head 204
   end
+
 end

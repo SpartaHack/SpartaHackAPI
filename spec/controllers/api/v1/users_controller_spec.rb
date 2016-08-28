@@ -1,10 +1,14 @@
 require 'spec_helper'
 
 describe Api::V1::UsersController do
+  let(:api_key){ FactoryGirl.create(:api_key) }
+  before {request.headers["HTTP_AUTHORIZATION"] = "Token token=\"#{api_key.access_token}\"" }
+
   describe "GET #show" do
     before(:each) do 
       @user = FactoryGirl.create :user
-      get :show, id: @user.id
+      get :show, {id: @user.id}
+
     end
 
     it "returns the information about a reporter on a hash" do

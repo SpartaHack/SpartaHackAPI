@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 RSpec.describe Api::V1::SessionsController do
+  let(:api_key){ FactoryGirl.create(:api_key) }
+  before {request.headers["HTTP_AUTHORIZATION"] = "Token token=\"#{api_key.access_token}\"" }
 
   describe "POST #create" do
 
