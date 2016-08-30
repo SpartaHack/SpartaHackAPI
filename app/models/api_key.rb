@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: api_keys
+#
+#  id           :integer          not null, primary key
+#  access_token :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
 class ApiKey < ActiveRecord::Base
   before_create :generate_access_token
   
