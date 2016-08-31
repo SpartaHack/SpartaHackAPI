@@ -30,11 +30,28 @@ class User < ActiveRecord::Base
 
   before_create :generate_authentication_token!
 
+  ROLES = %i[director judge mentor sponsor organizer volunteer hacker]
+
   def generate_authentication_token!
-    loop do 
+    loop do
       self.auth_token = Devise.friendly_token
       break unless self.class.exists?(auth_token: auth_token)
     end
+  end
+
+  def roles=(roles)
+    roles = [*roles].map { |r| r.to_sym }
+    self.role = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
+  end
+
+  def roles
+    ROLES.reject do |r|
+      ((role.to_i || 0) & 2**ROLES.index(r)).zero?
+    end
+  end
+
+  def has_role?(role)
+    roles.include?(role)
   end
 
 end

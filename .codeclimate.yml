@@ -18,6 +18,7 @@ engines:
     enabled: true
     exclude_fingerprints:
     - 81f1db8cc66fe7d124f1ecde5904b4e5
+    - 32e3a991eea16f93ea7a66b338c31b78
   fixme:
     enabled: true
   rubocop:

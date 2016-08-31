@@ -26,6 +26,7 @@ FactoryGirl.define do
     email 					{ FFaker::Internet.email }
     password 				"12345678"
     password_confirmation 	"12345678"
+    roles					'hacker'
   
 	factory :confirmed_user do
 		confirmed_at          	Time.now
