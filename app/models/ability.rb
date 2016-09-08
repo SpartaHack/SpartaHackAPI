@@ -5,11 +5,12 @@ class Ability
     user ||= User.new
     if user.has_role? :director
       can :manage, :all
-    elsif user.has_role? :judge
-    elsif user.has_role? :mentor
-    elsif user.has_role? :sponsor
+    # elsif user.has_role? :judge
+    # elsif user.has_role? :mentor
+    # elsif user.has_role? :sponsor
     elsif user.has_role? :organizer
-    elsif user.has_role? :volunteer
+      can :manage, Faq
+    # elsif user.has_role? :volunteer
     elsif user.has_role? :hacker
       can :update, User
       can :destroy, User
