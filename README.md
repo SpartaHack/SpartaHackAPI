@@ -1,10 +1,7 @@
-[![Build Status](https://travis-ci.org/SpartaHack/SpartaHack-API.svg?branch=master)](https://travis-ci.org/SpartaHack/SpartaHack-API)
-[![Code Climate](https://codeclimate.com/github/SpartaHack/SpartaHack-API/badges/gpa.svg)](https://codeclimate.com/github/SpartaHack/SpartaHack-API)
-[![Test Coverage](https://codeclimate.com/github/SpartaHack/SpartaHack-API/badges/coverage.svg)](https://codeclimate.com/github/SpartaHack/SpartaHack-API/coverage)
-[![Issue Count](https://codeclimate.com/github/SpartaHack/SpartaHack-API/badges/issue_count.svg)](https://codeclimate.com/github/SpartaHack/SpartaHack-API)
-
-[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/SpartaHack/SpartaHack-API.svg)](http://isitmaintained.com/project/SpartaHack/SpartaHack-API "Average time to resolve an issue")
-[![Percentage of issues still open](http://isitmaintained.com/badge/open/SpartaHack/SpartaHack-API.svg)](http://isitmaintained.com/project/SpartaHack/SpartaHack-API "Percentage of issues still open")
+[![Build Status](https://travis-ci.org/bogdanpozderca/SpartaHack-API.svg?branch=master)](https://travis-ci.org/bogdanpozderca/SpartaHack-API)
+[![Code Climate](https://codeclimate.com/github/bogdanpozderca/SpartaHack-API/badges/gpa.svg)](https://codeclimate.com/github/bogdanpozderca/SpartaHack-API)
+[![Test Coverage](https://codeclimate.com/github/bogdanpozderca/SpartaHack-API/badges/coverage.svg)](https://codeclimate.com/github/bogdanpozderca/SpartaHack-API/coverage)
+[![Issue Count](https://codeclimate.com/github/bogdanpozderca/SpartaHack-API/badges/issue_count.svg)](https://codeclimate.com/github/bogdanpozderca/SpartaHack-API)
 
 # SpartaHack API
 ****
