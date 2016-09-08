@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rspec/rspec-core.git
-  revision: 88b7b4ca25f1efa63155c4aab5bb640aecc15ce7
+  revision: 6a4376e276e52b89d35aa5e16b74758e9f64b991
   branch: master
   specs:
     rspec-core (3.6.0.pre)
