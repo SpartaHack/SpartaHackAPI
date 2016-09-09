@@ -6,7 +6,7 @@ describe Api::V1::UsersController do
 
   describe "GET #show" do
     context "when user id exists" do
-      before(:each) do 
+      before(:each) do
         @user = FactoryGirl.create :user
         get :show, {id: @user.id}
 
@@ -21,7 +21,7 @@ describe Api::V1::UsersController do
     end
 
     context "when user id does not exist" do
-      before(:each) do 
+      before(:each) do
         get :show, {id: 999999999}
       end
 
@@ -39,7 +39,7 @@ describe Api::V1::UsersController do
     context "when is successfully created" do
       before(:each) do
         @user_attributes = FactoryGirl.attributes_for :user
-        post :create, @user_attributes
+        post :create, { user: @user_attributes }
       end
 
       it "renders the json representation for the user record just created" do
@@ -53,7 +53,7 @@ describe Api::V1::UsersController do
     context "when is not created" do
       before(:each) do
         @invalid_user_attributes = { password: "12345678", password_confirmation: "12345678" } #notice I'm not including the email
-        post :create, @invalid_user_attributes
+        post :create, { user: @invalid_user_attributes }
       end
 
       it "renders an errors json" do
@@ -73,7 +73,7 @@ describe Api::V1::UsersController do
   describe "PUT/PATCH #update" do
     before(:each) do
       @user = FactoryGirl.create :user
-      api_authorization_header @user.auth_token 
+      api_authorization_header @user.auth_token
     end
 
     context "when is successfully updated" do
@@ -111,7 +111,7 @@ describe Api::V1::UsersController do
   describe "DELETE #destroy" do
     before(:each) do
       @user = FactoryGirl.create :user
-      api_authorization_header @user.auth_token 
+      api_authorization_header @user.auth_token
       delete :destroy, { id: @user.id }
     end
 
