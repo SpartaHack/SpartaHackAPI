@@ -59,3 +59,8 @@ gem 'cancancan', '~> 1.10'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "codeclimate-test-reporter", group: :test, require: nil
+
+gem 'capistrano', '~> 3.1.0'
+gem 'capistrano-bundler', '~> 1.1.2'
+gem 'capistrano-rails', '~> 1.1.1'
+gem 'capistrano-rvm', git: "https://github.com/capistrano/rvm"
