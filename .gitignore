@@ -18,3 +18,8 @@
 
 .powenv
 erd.pdf
+
+#capistrano file
+releases/
+repo/
+shared/
