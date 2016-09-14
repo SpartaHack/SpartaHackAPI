@@ -84,5 +84,5 @@ test:
 production:
   <<: *default
   database: SpartaHack-API_production
-  username: SpartaHack-API
-  password: <%= ENV['SPARTAHACK-API_DATABASE_PASSWORD'] %>
+  username: <%= ENV['PROD_DATABASE_USER'] %>
+  password: <%= ENV['PROD_DATABASE_PASSWORD'] %>
