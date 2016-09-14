@@ -43,10 +43,6 @@ group :development do
 end
 
 group :test do
-  gem 'rake'
-  %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
-      gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'master'
-  end
   gem "factory_girl_rails"
   gem 'ffaker'
   gem 'shoulda-matchers', '~> 3.1'
@@ -60,7 +56,14 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "codeclimate-test-reporter", group: :test, require: nil
 
-gem 'capistrano', '~> 3.1.0'
-gem 'capistrano-bundler', '~> 1.1.2'
-gem 'capistrano-rails', '~> 1.1.1'
-gem 'capistrano-rvm', git: "https://github.com/capistrano/rvm"
+
+gem 'rake'
+%w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+    gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'master'
+end
+
+gem 'capistrano'      
+gem 'capistrano-rvm'    
+gem 'capistrano-rails'  
+gem 'capistrano-bundler' 
+gem 'capistrano3-puma'  
