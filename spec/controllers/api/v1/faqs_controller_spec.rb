@@ -44,7 +44,7 @@ RSpec.describe Api::V1::FaqsController, type: :controller do
   describe "GET #index" do
     it "returns a success response" do
       faq = Faq.create! valid_attributes
-      get :index, params: {}
+      get :index, params: {id: faq.id}
       expect(response).to be_success
     end
   end
