@@ -1,5 +1,6 @@
 class Api::V1::FaqsController < ApplicationController
   load_and_authorize_resource
+  before_action :geo_ip
   before_action :set_faq, only: [:show, :update, :destroy]
 
   # GET /faqs
