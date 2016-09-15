@@ -18,11 +18,8 @@ module Authenticable
   def restrict_access
     authenticate_or_request_with_http_token do |token|
       if ApiKey.exists? access_token: token
-        api = ApiKey.find_by_access_token token
-        api.increment! :count
+        ApiKey.find_by_access_token(token).increment!(:count)
         true
-      else
-        false
       end
     end
   end

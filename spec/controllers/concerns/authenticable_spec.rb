@@ -6,7 +6,7 @@ class Authentication
 end
 
 RSpec.describe Authenticable do
-  let(:authentication) { Authentication.new } 
+  let(:authentication) { Authentication.new }
   subject { authentication }
 
   describe "#current_user" do
