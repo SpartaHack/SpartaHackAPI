@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rspec/rspec-core.git
-  revision: fc767bef47807008899c24a8fd919236567c9023
+  revision: 7deb6399ab4cbeeee87622cc5725ecbf19c6e83d
   branch: master
   specs:
     rspec-core (3.6.0.pre)
@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-expectations.git
-  revision: add9b271ecb1d65f7da5bc8a9dd8c64d81d92303
+  revision: 8343affb9b290d494a0793e894a83f77e28eff5c
   branch: master
   specs:
     rspec-expectations (3.6.0.pre)
@@ -17,7 +17,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-mocks.git
-  revision: 4d842fefb82eaca7d33554746c1fb8c03738b068
+  revision: 0c87b91d32f4f827d2c1953935adcfd5468263a5
   branch: master
   specs:
     rspec-mocks (3.6.0.pre)
@@ -26,7 +26,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-rails.git
-  revision: e8054a1cd03044f725030fe8315952cf3799a395
+  revision: be020b8280bc789a75533d5b8567698f5e93dd62
   branch: master
   specs:
     rspec-rails (3.6.0.pre)
@@ -40,7 +40,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-support.git
-  revision: e96cc73d0a7d46d9b1948d165c52f0aff78e9457
+  revision: 357ca45a15819b1b452e50f57f5df197710f7182
   branch: master
   specs:
     rspec-support (3.6.0.pre)
@@ -93,7 +93,7 @@ GEM
     arel (7.1.2)
     bcrypt (3.1.11)
     builder (3.2.2)
-    byebug (9.0.5)
+    byebug (9.0.6)
     cancancan (1.15.0)
     capistrano (3.6.1)
       airbrussh (>= 1.0.0)
@@ -163,7 +163,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
-    minitest (5.9.0)
+    minitest (5.9.1)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.2.0)
@@ -172,7 +172,7 @@ GEM
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
     orm_adapter (0.5.0)
-    pg (0.18.4)
+    pg (0.19.0)
     pkg-config (1.1.7)
     puma (3.6.0)
     rack (2.0.1)
@@ -206,7 +206,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (11.2.2)
+    rake (11.3.0)
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)

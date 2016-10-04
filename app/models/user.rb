@@ -16,9 +16,6 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  auth_token             :string           default("")
-#  confirmation_token     :string
-#  confirmed_at           :datetime
-#  confirmation_sent_at   :datetime
 #  role                   :integer
 #
 # Indexes
@@ -31,11 +28,11 @@
 
 class User < ActiveRecord::Base
   has_many :faq
-  
+
   validates :auth_token, uniqueness: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   before_create :generate_authentication_token!

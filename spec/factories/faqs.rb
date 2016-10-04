@@ -25,11 +25,11 @@ FactoryGirl.define do
     association :user, factory: :user
 
     factory :faq_director do
-  		association :user, factory: :confirmed_director
+  		association :user, factory: :director
   	end
 
     factory :faq_hacker do
-  		association :user, factory: :confirmed_user
+  		association :user, factory: :user
   	end
 
   end

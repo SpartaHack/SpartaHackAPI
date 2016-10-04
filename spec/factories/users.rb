@@ -36,17 +36,11 @@ FactoryGirl.define do
     password_confirmation 	   "12345678"
     roles                      "hacker"
 
-  	factory :confirmed_user do
-  		confirmed_at          	 Time.now
-  	end
-
-    factory :confirmed_director do
-  		confirmed_at          	 Time.now
+    factory :director do
       roles                    "director"
   	end
 
-    factory :confirmed_organizer do
-  		confirmed_at          	 Time.now
+    factory :organizer do
       roles                    "organizer"
   	end
 
