@@ -6,59 +6,36 @@ RSpec.describe Api::V1::SessionsController do
 
   describe "POST #create" do
 
-    context "when the user is confirmed" do
-      before(:each) do
-        @user = FactoryGirl.create :confirmed_user
-      end
-
-      context "and the credentials are correct" do
-
-        before(:each) do
-          post :create, email: @user.email, password: "12345678"
-        end
-
-        it "returns the user record corresponding to the given credentials" do
-          @user.reload
-          expect(json_response[:auth_token]).to eql @user.auth_token
-        end
-
-        it { should respond_with 200 }
-      end
-
-      context "and the credentials are incorrect" do
-
-        before(:each) do
-          credentials = { email: @user.email, password: "invalidpassword" }
-          post :create, { session: credentials }
-        end
-
-        it "returns a json with an error" do
-          expect(json_response[:errors]).to eql "Invalid email or password"
-        end
-
-        it { should respond_with 422 }
-      end
+    before(:each) do
+      @user = FactoryGirl.create :user
     end
 
-    context "when the user is not confirmed" do
+    context "and the credentials are correct" do
+
       before(:each) do
-        @user = FactoryGirl.create :user
+        post :create, email: @user.email, password: "12345678"
       end
 
-      context "and the credentials are correct" do
-
-        before(:each) do
-          post :create, email: @user.email, password: "12345678"
-        end
-
-        it "returns the user record corresponding to the given credentials" do
-          @user.reload
-          expect(response.body).to eql "You have to confirm your email address before continuing."
-        end
-
-        it { should respond_with 401 }
+      it "returns the user record corresponding to the given credentials" do
+        @user.reload
+        expect(json_response[:auth_token]).to eql @user.auth_token
       end
-      
+
+      it { should respond_with 200 }
+    end
+
+    context "and the credentials are incorrect" do
+
+      before(:each) do
+        credentials = { email: @user.email, password: "invalidpassword" }
+        post :create, { session: credentials }
+      end
+
+      it "returns a json with an error" do
+        expect(json_response[:errors]).to eql "Invalid email or password"
+      end
+
+      it { should respond_with 422 }
     end
   end
 
