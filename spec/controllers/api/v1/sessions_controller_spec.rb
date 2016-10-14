@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 RSpec.describe Api::V1::SessionsController do
   let(:api_key){ FactoryGirl.create(:api_key) }

@@ -16,6 +16,8 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+gem 'active_model_serializers'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Use Redis adapter to run Action Cable in production

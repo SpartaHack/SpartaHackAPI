@@ -18,7 +18,7 @@
 #  fk_rails_901529645b  (user_id => users.id)
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
 RSpec.describe Faq do
   before { @faq = FactoryGirl.build(:faq) }
