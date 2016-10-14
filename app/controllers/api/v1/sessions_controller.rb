@@ -4,9 +4,9 @@ class Api::V1::SessionsController < ApplicationController
   respond_to :json
 
   def create
-    user_password = params[:session][:password]
+    user_password = faq_params[:password]
 
-    user_email = params[:session][:email]
+    user_email = faq_params[:email]
     user = user_email.present? && User.find_by(email: user_email)
 
     if user and user.valid_password? user_password
@@ -15,7 +15,7 @@ class Api::V1::SessionsController < ApplicationController
       user.save
       render json: user, status: 200, location: [:api, user]
     else
-      render json: { errors: "Invalid email or password" }, status: 422
+      render json: { errors: { invalid: "Invalid email or password" } }, status: 422
     end
   end
 
@@ -24,6 +24,11 @@ class Api::V1::SessionsController < ApplicationController
     user.generate_authentication_token!
     user.save
     head 204
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def faq_params
+    params.require(:session).permit(:email, :password)
   end
 
 end

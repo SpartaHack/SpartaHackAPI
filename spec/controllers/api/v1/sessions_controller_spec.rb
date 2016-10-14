@@ -28,11 +28,11 @@ RSpec.describe Api::V1::SessionsController do
 
       before(:each) do
         credentials = { email: @user.email, password: "invalidpassword" }
-        post :create, { session: credentials }
+        post :create, credentials
       end
 
       it "returns a json with an error" do
-        expect(json_response[:errors]).to eql "Invalid email or password"
+        expect(json_response[:errors][:invalid]).to eql "Invalid email or password"
       end
 
       it { should respond_with 422 }
