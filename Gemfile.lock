@@ -8,50 +8,50 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-core.git
-  revision: 7deb6399ab4cbeeee87622cc5725ecbf19c6e83d
+  revision: 111d7e2356431e456266bb334842158e30797bd0
   branch: master
   specs:
-    rspec-core (3.6.0.pre)
-      rspec-support (= 3.6.0.pre)
+    rspec-core (3.6.0.beta1)
+      rspec-support (= 3.6.0.beta1)
 
 GIT
   remote: https://github.com/rspec/rspec-expectations.git
-  revision: 8343affb9b290d494a0793e894a83f77e28eff5c
+  revision: f07af78f18abe02f2478db8a47cd341146b0ba02
   branch: master
   specs:
-    rspec-expectations (3.6.0.pre)
+    rspec-expectations (3.6.0.beta1)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (= 3.6.0.pre)
+      rspec-support (= 3.6.0.beta1)
 
 GIT
   remote: https://github.com/rspec/rspec-mocks.git
-  revision: 0c87b91d32f4f827d2c1953935adcfd5468263a5
+  revision: c0bf45b5ceb179c51b0d38d7c91faf60a7a6048f
   branch: master
   specs:
-    rspec-mocks (3.6.0.pre)
+    rspec-mocks (3.6.0.beta1)
       diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (= 3.6.0.pre)
+      rspec-support (= 3.6.0.beta1)
 
 GIT
   remote: https://github.com/rspec/rspec-rails.git
-  revision: be020b8280bc789a75533d5b8567698f5e93dd62
+  revision: e55652e4483863ca16e5c7f9a1fd05051e6fb1e0
   branch: master
   specs:
-    rspec-rails (3.6.0.pre)
+    rspec-rails (3.6.0.beta1)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
-      rspec-core (= 3.6.0.pre)
-      rspec-expectations (= 3.6.0.pre)
-      rspec-mocks (= 3.6.0.pre)
-      rspec-support (= 3.6.0.pre)
+      rspec-core (= 3.6.0.beta1)
+      rspec-expectations (= 3.6.0.beta1)
+      rspec-mocks (= 3.6.0.beta1)
+      rspec-support (= 3.6.0.beta1)
 
 GIT
   remote: https://github.com/rspec/rspec-support.git
-  revision: 357ca45a15819b1b452e50f57f5df197710f7182
+  revision: b05fcec376664b0e55cb09ac17113b5456f62790
   branch: master
   specs:
-    rspec-support (3.6.0.pre)
+    rspec-support (3.6.0.beta1)
 
 GEM
   remote: https://rubygems.org/
@@ -101,7 +101,7 @@ GEM
     annotate (2.7.1)
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 12.0)
-    arel (7.1.2)
+    arel (7.1.4)
     bcrypt (3.1.11)
     builder (3.2.2)
     byebug (9.0.6)
@@ -175,12 +175,10 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (3.2.0)
     nio4r (1.2.1)
-    nokogiri (1.6.8)
+    nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
-      pkg-config (~> 1.1.7)
     orm_adapter (0.5.0)
     pg (0.19.0)
-    pkg-config (1.1.7)
     puma (3.6.0)
     rack (2.0.1)
     rack-test (0.6.3)
