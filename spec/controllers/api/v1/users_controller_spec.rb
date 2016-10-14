@@ -8,7 +8,7 @@ describe Api::V1::UsersController do
     context "when user id exists" do
       before(:each) do
         @user = FactoryGirl.create :user
-        get :show, {id: @user.id}
+        get :show, params: {id: @user.id}
 
       end
 
@@ -22,7 +22,7 @@ describe Api::V1::UsersController do
 
     context "when user id does not exist" do
       before(:each) do
-        get :show, {id: 999999999}
+        get :show, params: {id: 999999999}
       end
 
       it "returns an error" do
@@ -39,7 +39,7 @@ describe Api::V1::UsersController do
     context "when is successfully created" do
       before(:each) do
         @user_attributes = FactoryGirl.attributes_for :user
-        post :create, { user: @user_attributes }
+        post :create, params: { user: @user_attributes }
       end
 
       it "renders the json representation for the user record just created" do
@@ -53,7 +53,7 @@ describe Api::V1::UsersController do
     context "when is not created" do
       before(:each) do
         @invalid_user_attributes = { password: "12345678", password_confirmation: "12345678" } #notice I'm not including the email
-        post :create, { user: @invalid_user_attributes }
+        post :create, params: { user: @invalid_user_attributes }
       end
 
       it "renders an errors json" do
@@ -78,7 +78,7 @@ describe Api::V1::UsersController do
 
     context "when is successfully updated" do
       before(:each) do
-        patch :update, { id: @user.id, email: "newmail@example.com" }
+        patch :update, params: { id: @user.id, email: "newmail@example.com" }
       end
 
       it "renders the json representation for the updated user" do
@@ -91,7 +91,7 @@ describe Api::V1::UsersController do
 
     context "when is not updated" do
       before(:each) do
-        patch :update, { id: @user.id, email: "bademail.com" }
+        patch :update, params: { id: @user.id, email: "bademail.com" }
       end
 
       it "renders an errors json" do
@@ -112,10 +112,27 @@ describe Api::V1::UsersController do
     before(:each) do
       @user = FactoryGirl.create :user
       api_authorization_header @user.auth_token
-      delete :destroy, { id: @user.id }
+      delete :destroy, params: { id: @user.id }
     end
 
     it { should respond_with 204 }
 
   end
+
+  describe "director login" do
+    login_director
+
+    it "should have a current_user" do
+      expect(@director).to_not eq(nil)
+    end
+  end
+
+  describe "hacker login" do
+    login_hacker
+
+    it "should have a current_user" do
+      expect(@hacker).to_not eq(nil)
+    end
+  end
+
 end
