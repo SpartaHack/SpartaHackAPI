@@ -8,7 +8,7 @@ class Api::V1::UsersController < ApplicationController
     if User.exists? id: params[:id]
       render json: User.find(params[:id]), status: 200
     else
-      render json: { errors: { user: "User does not exist"} }, status: 422
+      render json: { errors: { user: ["does not exist"] } }, status: 422
     end
   end
 

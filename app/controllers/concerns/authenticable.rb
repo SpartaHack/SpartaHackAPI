@@ -8,7 +8,7 @@ module Authenticable
   end
 
   def authenticate_with_token!
-    render json: { errors: "Not authenticated" }, status: :unauthorized unless user_signed_in?
+    render json: { errors: ["Not authenticated"] }, status: :unauthorized unless user_signed_in?
   end
 
   def user_signed_in?
@@ -16,7 +16,7 @@ module Authenticable
   end
 
   def restrict_access
-    authenticate_or_request_with_http_token do |token|
+    authenticate_with_http_token do |token|
       if ApiKey.exists? access_token: token
         ApiKey.find_by_access_token(token).increment!(:count)
         true
