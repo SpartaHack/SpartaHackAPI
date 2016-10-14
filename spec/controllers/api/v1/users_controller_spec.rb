@@ -27,7 +27,7 @@ describe Api::V1::UsersController do
 
       it "returns an error" do
         user_response = json_response
-        expect(user_response[:errors]).to eql "User does not exist"
+        expect(user_response[:errors][:user]).to eql "User does not exist"
       end
 
       it { should respond_with 422 }

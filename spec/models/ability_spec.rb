@@ -3,7 +3,7 @@ require "cancan/matchers"
 
 RSpec.describe Ability do
   context "a director should" do
-    let(:user){ FactoryGirl.create(:confirmed_director) }
+    let(:user){ FactoryGirl.create(:director) }
     subject(:ability){ Ability.new(user) }
 
     context "be able to manage Faq" do
@@ -14,7 +14,7 @@ RSpec.describe Ability do
   end
 
   context "an organizer should" do
-    let(:user){ FactoryGirl.create(:confirmed_organizer) }
+    let(:user){ FactoryGirl.create(:organizer) }
     subject(:ability){ Ability.new(user) }
 
     context "be able to manage Faq" do
@@ -25,7 +25,7 @@ RSpec.describe Ability do
   end
 
   context "a hacker should" do
-    let(:user){ FactoryGirl.create(:confirmed_user) }
+    let(:user){ FactoryGirl.create(:user) }
     subject(:ability){ Ability.new(user) }
 
     context "not be able to create update destroy Faq" do
