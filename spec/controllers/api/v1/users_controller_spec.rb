@@ -119,20 +119,4 @@ describe Api::V1::UsersController do
 
   end
 
-  describe "director login" do
-    login_director
-
-    it "should have a current_user" do
-      expect(@director).to_not eq(nil)
-    end
-  end
-
-  describe "hacker login" do
-    login_hacker
-
-    it "should have a current_user" do
-      expect(@hacker).to_not eq(nil)
-    end
-  end
-
 end
