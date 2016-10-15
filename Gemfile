@@ -69,7 +69,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "codeclimate-test-reporter", group: :test, require: nil
 
-gem 'capistrano'
+gem 'capistrano', '>= 3.6.1'
 gem 'capistrano-bundler'
 gem 'capistrano-rails'
 gem 'capistrano-rvm', git: "https://github.com/capistrano/rvm"
