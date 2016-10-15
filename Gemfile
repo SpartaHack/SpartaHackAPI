@@ -19,8 +19,11 @@ gem 'coffee-rails', '~> 4.2'
 # Allows control over what information is sent as a response
 gem 'active_model_serializers'
 
-# This is for Cross Origin Resource Sharing, in order to make cross-origin AJAX requests possible.
+# For Cross Origin Resource Sharing, in order to make cross-origin AJAX requests possible.
 gem 'rack-cors'
+
+# To protect our API from DDoS and brute force attacks
+gem 'rack-attack'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
