@@ -291,7 +291,7 @@ DEPENDENCIES
   factory_girl_rails
   ffaker
   jquery-rails
-  listen (~> 3.0.5)
+  listen (> 3.0.5)
   pg (~> 0.18)
   puma (~> 3.0)
   rack-attack
