@@ -16,7 +16,11 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# Allows control over what information is sent as a response
 gem 'active_model_serializers'
+
+# This is for Cross Origin Resource Sharing, in order to make cross-origin AJAX requests possible.
+gem 'rack-cors'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
