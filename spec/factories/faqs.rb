@@ -22,7 +22,6 @@ FactoryGirl.define do
   factory :faq do
     question "MyStringExample"
     answer "MyTextExample"
-    association :user, factory: :user
 
     factory :faq_director do
   		association :user, factory: :director

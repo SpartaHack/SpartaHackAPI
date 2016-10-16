@@ -46,7 +46,7 @@ Rails.application.routes.draw do
         get "/schedule" => "schedule#index"
         get "/prizes" => "prizes#index"
         get "/announcements" => "announcements#index"
-        
+
       end
     end
   end

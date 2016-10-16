@@ -18,6 +18,15 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# Allows control over what information is sent as a response
+gem 'active_model_serializers'
+
+# For Cross Origin Resource Sharing, in order to make cross-origin AJAX requests possible.
+gem 'rack-cors'
+
+# To protect our API from DDoS and brute force attacks
+gem 'rack-attack'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Use Redis adapter to run Action Cable in production
@@ -36,7 +45,7 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
-  gem 'listen', '~> 3.0.5'
+  gem 'listen'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -58,13 +67,12 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "codeclimate-test-reporter", group: :test, require: nil
 
-
 gem 'rake'
 %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
     gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'master'
 end
 
-gem 'capistrano'      
+gem 'capistrano', '>= 3.6.1'      
 gem 'capistrano-rvm'    
 gem 'capistrano-rails'  
 gem 'capistrano-bundler' 
