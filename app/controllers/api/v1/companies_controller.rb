@@ -1,9 +1,10 @@
 class Api::V1::CompaniesController < ApplicationController
   require 'base64'
+  require 'open-uri'
 
   # GET /companies
   def index
-    data = Base64.encode64(File.join(Rails.root, "app/assets/images/preview.png")).delete!("\n")
+    data = Base64.encode64(open(File.join(Rails.root, "app/assets/images/preview.png")) { |f| f.read }).delete("\n")
     uri  = "data:image/png;base64,#{data}"
     render json: { companies: [
       { id: 1, name: "SpartaHack", logo_png:uri, level: "Warrior", url: "https://17.spartahack.com"},
