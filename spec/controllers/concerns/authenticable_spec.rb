@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 class Authentication
   include ActionController::HttpAuthentication::Token::ControllerMethods

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 RSpec.describe Api::V1::SessionsController do
   let(:api_key){ FactoryGirl.create(:api_key) }
@@ -13,7 +13,7 @@ RSpec.describe Api::V1::SessionsController do
     context "and the credentials are correct" do
 
       before(:each) do
-        post :create, email: @user.email, password: "12345678"
+        post :create, params: { email: @user.email, password: "12345678" }
       end
 
       it "returns the user record corresponding to the given credentials" do
@@ -28,7 +28,7 @@ RSpec.describe Api::V1::SessionsController do
 
       before(:each) do
         credentials = { email: @user.email, password: "invalidpassword" }
-        post :create, credentials
+        post :create, params: credentials
       end
 
       it "returns a json with an error" do
@@ -44,7 +44,7 @@ RSpec.describe Api::V1::SessionsController do
     before(:each) do
       @user = FactoryGirl.create :user
       sign_in @user
-      delete :destroy, id: @user.auth_token
+      delete :destroy, params: { id: @user.auth_token }
     end
 
     it { should respond_with 204 }
