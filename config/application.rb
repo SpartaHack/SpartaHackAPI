@@ -36,7 +36,7 @@ module SpartaHackApi
 
     config.autoload_paths += %W(\#{config.root}/lib)
 
-    config.middleware.insert_before 0, "Rack::Cors" do
+    config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
         resource '*', :headers => :any, :methods => [:get, :post, :options]
@@ -44,6 +44,5 @@ module SpartaHackApi
     end
 
     config.middleware.use Rack::Attack
-    
   end
 end
