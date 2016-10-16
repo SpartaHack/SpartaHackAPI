@@ -28,7 +28,7 @@ module Authenticable
   end
 
   def render_unauthorized(realm = "Application")
-    self.headers["WWW-Authenticate"] = %(Token realm="#{realm.gsub(/"/, "")}")
+    self.headers["WWW-Authenticate"] = %(Token realm="#{realm.delete('"')}")
     render json: { errors: ['Bad credentials'] }, status: :unauthorized
   end
 

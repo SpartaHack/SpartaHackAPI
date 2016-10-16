@@ -3,7 +3,7 @@ class Api::V1::CompaniesController < ApplicationController
 
   # GET /companies
   def index
-    data = Base64.encode64(File.join(Rails.root, "app/assets/images/preview.png")).gsub("\n", '')
+    data = Base64.encode64(File.join(Rails.root, "app/assets/images/preview.png")).delete!("\n")
     uri  = "data:image/png;base64,#{data}"
     render json: { companies: [
       { id: 1, name: "SpartaHack", logo_png:uri, level: "Warrior", url: "https://17.spartahack.com"},

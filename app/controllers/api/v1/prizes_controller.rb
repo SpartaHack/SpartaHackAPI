@@ -1,9 +1,9 @@
 class Api::V1::PrizesController < ApplicationController
   require 'base64'
-  
+
   # GET /prizes
   def index
-    data = Base64.encode64(File.join(Rails.root, "app/assets/images/preview.png")).gsub("\n", '')
+    data = Base64.encode64(File.join(Rails.root, "app/assets/images/preview.png")).delete!("\n")
     uri  = "data:image/png;base64,#{data}"
     render json: { prizes: [
       { id: 1, name: "explain to you how all this", description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco", sponsor: { id: 3, name: "SpartaSlack", logo_png:uri, level: "Warrior", url: "https://17.spartahack.com"}},
