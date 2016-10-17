@@ -34,7 +34,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-rails.git
-  revision: e55652e4483863ca16e5c7f9a1fd05051e6fb1e0
+  revision: b5f1086ab4442d65917988eac6f168404cfd215f
   branch: master
   specs:
     rspec-rails (3.6.0.beta1)
@@ -48,7 +48,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-support.git
-  revision: b05fcec376664b0e55cb09ac17113b5456f62790
+  revision: 5cc75bd37b1bcfb1b9c6c4835d1f1b74fb695fe3
   branch: master
   specs:
     rspec-support (3.6.0.beta1)
