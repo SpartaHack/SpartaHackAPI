@@ -17,6 +17,8 @@
 #  updated_at             :datetime         not null
 #  auth_token             :string           default("")
 #  role                   :integer
+#  first_name             :string
+#  last_name              :string
 #
 # Indexes
 #
@@ -28,6 +30,8 @@
 class User < ActiveRecord::Base
   has_many :faq
 
+  validates :first_name, presence: true
+  validates :last_name,  presence: true
   validates :auth_token, uniqueness: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
