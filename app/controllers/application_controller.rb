@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
   include Statistics
   include Authenticable
 
-  rescue_from CanCan::AccessDenied do |exception|
+  rescue_from CanCan::AccessDenied do # |exception|
     render json: { api: ["Access Denied"] }, status: :unauthorized
   end
 
