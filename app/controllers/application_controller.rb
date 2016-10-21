@@ -3,6 +3,10 @@ class ApplicationController < ActionController::API
   include Statistics
   include Authenticable
 
+  rescue_from CanCan::AccessDenied do |exception|
+    render json: { api: ["Access Denied"] }, status: :unauthorized
+  end
+
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected

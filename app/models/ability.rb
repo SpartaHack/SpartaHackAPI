@@ -12,11 +12,13 @@ class Ability
       can :manage, Faq
     # elsif user.has_role? :volunteer
     elsif user.has_role? :hacker
-      can :update, User
-      can :destroy, User
+      can :update, User, :id => user.id
+      can :destroy, User, :id => user.id
+      can :manage, Application, :user_id => user.id
+      can :read, Faq
+    else # Just API Token, this is temporary.
       can :read, :all
-    else
-      can :read, :all
+      cannot :read, [User, Application]
     end
     # Define abilities for the passed in user here. For example:
     #
