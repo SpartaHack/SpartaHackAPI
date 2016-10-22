@@ -137,12 +137,11 @@ RSpec.describe Api::V1::FaqsController, type: :controller do
       before do
         @faq = FactoryGirl.create :faq_hacker
         api_authorization_header @faq.user.auth_token
+        delete :destroy, params: {id: @faq.id}
       end
 
       it "does not destroy the requested faq" do
-        expect {
-          delete :destroy, params: {id: @faq.id}
-        }.to raise_error(CanCan::AccessDenied)
+        expect(json_response[:api]).to eql ["Access Denied"]
       end
     end
   end

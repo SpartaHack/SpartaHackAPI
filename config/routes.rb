@@ -36,10 +36,10 @@ Rails.application.routes.draw do
     namespace :api, path: nil, defaults: {format: 'json'} do
       scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
 
-
         resources :users
         resources :sessions, :only => [:create, :destroy]
         resources :faqs
+        resources :applications
 
         get "/map" => "pdf#index"
         get "/companies" => "companies#index"
@@ -58,6 +58,7 @@ Rails.application.routes.draw do
         resources :users
         resources :sessions, :only => [:create, :destroy]
         resources :faqs
+        resources :applications
 
         get "/map" => "pdf#index"
         get "/companies" => "companies#index"
