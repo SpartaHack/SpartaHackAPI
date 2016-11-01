@@ -41,17 +41,17 @@ class Api::V1::ApplicationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_application
-      @application = Application.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_application
+    @application = Application.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def application_params
-      params.require(:application).permit(:birth_day, :birth_month, :birth_year,
-       :education, :university, :other_university, :travel_origin,
-       :graduation_season, :graduation_year, {:major => []}, :hackathons, :github,
-       :linkedin, :website, :devpost, :other_link,
-       :statement).merge(:user_id => current_user.id)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def application_params
+    params.require(:application).permit(:birth_day, :birth_month, :birth_year,
+      :gender, :education, :university, :other_university, :travel_origin,
+      :graduation_season, :graduation_year, {:major => []}, :hackathons,
+      :github, :linkedin, :website, :devpost, :other_link, {:race => []},
+    :statement).merge(:user_id => current_user.id)
+  end
 end

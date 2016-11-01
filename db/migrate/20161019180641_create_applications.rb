@@ -5,6 +5,8 @@ class CreateApplications < ActiveRecord::Migration[5.0]
       t.integer :birth_day,                   null: false
       t.integer :birth_month,                 null: false
       t.integer :birth_year,                  null: false
+      t.string :gender
+      t.text :race,                           array: true
       t.string :education,                    null: false
       t.string :university,                   null: false
       t.string :other_university
