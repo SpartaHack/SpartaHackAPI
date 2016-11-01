@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161019180641) do
+ActiveRecord::Schema.define(version: 20161101180545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 20161019180641) do
     t.integer  "birth_day",         null: false
     t.integer  "birth_month",       null: false
     t.integer  "birth_year",        null: false
-    t.string   "gender"
     t.text     "race",                           array: true
+    t.string   "gender"
     t.string   "education",         null: false
     t.string   "university",        null: false
     t.string   "other_university"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20161019180641) do
     t.text     "statement"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+
     t.index ["user_id"], name: "index_applications_on_user_id", using: :btree
   end
 

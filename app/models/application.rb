@@ -23,6 +23,8 @@
 #  statement         :text
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  race              :text             is an Array
+#  gender            :string
 #
 # Indexes
 #
@@ -37,27 +39,39 @@ class Application < ApplicationRecord
   belongs_to :user
 
   validates :user_id,           presence: true, uniqueness: {
-                                                  message:
-                                                  "already has an application" }
+    message: "already has an application"
+  }
+
   validates :birth_day,         presence: true, numericality: {
-                                                  only_integer: true,
-                                                  greater_than: 0,
-                                                  less_than: 31 }
+    only_integer: true,
+    greater_than: 0,
+    less_than: 31
+  }
+
   validates :birth_month,       presence: true, numericality: {
-                                                  only_integer: true,
-                                                  greater_than: 0,
-                                                  less_than: 13 }
+    only_integer: true,
+    greater_than: 0,
+    less_than: 13
+  }
+
   validates :birth_year,        presence: true, numericality: {
-                                                  only_integer: true,
-                                                  greater_than: 1920,
-                                                  less_than: 2005 }
+    only_integer: true,
+    greater_than: 1920,
+    less_than: 2005
+  }
+
   validates :education,         presence: true
   validates :university,        presence: true
   validates :travel_origin,     presence: true
   validates :graduation_season, presence: true
   validates :graduation_year,   presence: true, numericality: {
-                                                  only_integer: true,
-                                                  greater_than: 2015 }
+    only_integer: true,
+    greater_than: 2015
+  }
+
   validates :major,             presence: true
-  validates :hackathons,        presence: true
+  validates :hackathons,        presence: true, numericality: {
+    only_integer: true,
+    greater_than: 0
+  }
 end
