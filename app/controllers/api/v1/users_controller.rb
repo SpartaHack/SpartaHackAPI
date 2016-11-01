@@ -38,8 +38,8 @@ class Api::V1::UsersController < ApplicationController
 
   private
 
-    def user_params
-      params.permit(:email, :password, :password_confirmation,
-        :first_name, :last_name, roles: []).merge(:roles => ['hacker'])
-    end
+  def user_params
+    params.permit(:email, :password, :password_confirmation,
+    :first_name, :last_name, roles: []).merge(:roles => ['hacker'])
+  end
 end
