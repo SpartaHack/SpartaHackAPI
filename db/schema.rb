@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101180545) do
+ActiveRecord::Schema.define(version: 20161102104603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,28 +23,29 @@ ActiveRecord::Schema.define(version: 20161101180545) do
   end
 
   create_table "applications", force: :cascade do |t|
-    t.integer  "user_id",           null: false
-    t.integer  "birth_day",         null: false
-    t.integer  "birth_month",       null: false
-    t.integer  "birth_year",        null: false
-    t.string   "education",         null: false
-    t.string   "university",        null: false
+    t.integer  "user_id",               null: false
+    t.integer  "birth_day",             null: false
+    t.integer  "birth_month",           null: false
+    t.integer  "birth_year",            null: false
+    t.string   "education",             null: false
+    t.string   "university",            null: false
     t.string   "other_university"
-    t.string   "travel_origin",     null: false
-    t.string   "graduation_season", null: false
-    t.integer  "graduation_year",   null: false
-    t.text     "major",             null: false, array: true
-    t.integer  "hackathons",        null: false
+    t.string   "travel_origin",         null: false
+    t.string   "graduation_season",     null: false
+    t.integer  "graduation_year",       null: false
+    t.text     "major",                 null: false, array: true
+    t.integer  "hackathons",            null: false
     t.string   "github"
     t.string   "linkedin"
     t.string   "website"
     t.string   "devpost"
     t.string   "other_link"
     t.text     "statement"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.text     "race",                           array: true
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.text     "race",                               array: true
     t.string   "gender"
+    t.string   "outside_north_america"
     t.index ["user_id"], name: "index_applications_on_user_id", using: :btree
   end
 
