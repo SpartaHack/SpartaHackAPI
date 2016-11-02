@@ -27,8 +27,6 @@ ActiveRecord::Schema.define(version: 20161101180545) do
     t.integer  "birth_day",         null: false
     t.integer  "birth_month",       null: false
     t.integer  "birth_year",        null: false
-    t.text     "race",                           array: true
-    t.string   "gender"
     t.string   "education",         null: false
     t.string   "university",        null: false
     t.string   "other_university"
@@ -45,7 +43,8 @@ ActiveRecord::Schema.define(version: 20161101180545) do
     t.text     "statement"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
-
+    t.text     "race",                           array: true
+    t.string   "gender"
     t.index ["user_id"], name: "index_applications_on_user_id", using: :btree
   end
 
