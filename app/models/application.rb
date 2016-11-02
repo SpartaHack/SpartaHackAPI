@@ -2,29 +2,30 @@
 #
 # Table name: applications
 #
-#  id                :integer          not null, primary key
-#  user_id           :integer          not null
-#  birth_day         :integer          not null
-#  birth_month       :integer          not null
-#  birth_year        :integer          not null
-#  education         :string           not null
-#  university        :string           not null
-#  other_university  :string
-#  travel_origin     :string           not null
-#  graduation_season :string           not null
-#  graduation_year   :integer          not null
-#  major             :text             not null, is an Array
-#  hackathons        :integer          not null
-#  github            :string
-#  linkedin          :string
-#  website           :string
-#  devpost           :string
-#  other_link        :string
-#  statement         :text
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  race              :text             is an Array
-#  gender            :string
+#  id                    :integer          not null, primary key
+#  user_id               :integer          not null
+#  birth_day             :integer          not null
+#  birth_month           :integer          not null
+#  birth_year            :integer          not null
+#  education             :string           not null
+#  university            :string           not null
+#  other_university      :string
+#  travel_origin         :string           not null
+#  graduation_season     :string           not null
+#  graduation_year       :integer          not null
+#  major                 :text             not null, is an Array
+#  hackathons            :integer          not null
+#  github                :string
+#  linkedin              :string
+#  website               :string
+#  devpost               :string
+#  other_link            :string
+#  statement             :text
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  race                  :text             is an Array
+#  gender                :string
+#  outside_north_america :string
 #
 # Indexes
 #
@@ -61,6 +62,7 @@ class Application < ApplicationRecord
   }
 
   validates :education,         presence: true
+  validates :outside_north_america,         presence: true
   validates :university,        presence: true
   validates :travel_origin,     presence: true
   validates :graduation_season, presence: true

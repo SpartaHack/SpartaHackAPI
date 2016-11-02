@@ -52,6 +52,6 @@ class Api::V1::ApplicationsController < ApplicationController
       :gender, :education, :university, :other_university, :travel_origin,
       :graduation_season, :graduation_year, {:major => []}, :hackathons,
       :github, :linkedin, :website, :devpost, :other_link, {:race => []},
-    :statement).merge(:user_id => current_user.id)
+    :statement, :outside_north_america).merge(:user_id => current_user.id)
   end
 end
