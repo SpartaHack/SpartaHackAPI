@@ -31,7 +31,7 @@
 require 'api_constraints'
 
 Rails.application.routes.draw do
-# Api definition
+  # Api definition
   constraints :subdomain => 'api' do
     namespace :api, path: nil, defaults: {format: 'json'} do
       scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do

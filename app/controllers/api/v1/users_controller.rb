@@ -6,7 +6,7 @@ class Api::V1::UsersController < ApplicationController
 
   def show
     if User.exists? id: params[:id]
-      render json: User.find(params[:id]), status: 200
+      render json: User.find(params[:id]), include: :application, status: 200
     else
       render json: { errors: { user: ["does not exist"] } }, status: 422
     end
@@ -32,6 +32,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def destroy
+    Application.find_by(:user_id => current_user.id).destroy
     current_user.destroy
     head 204
   end
