@@ -8,12 +8,12 @@
 #  birth_month           :integer          not null
 #  birth_year            :integer          not null
 #  education             :string           not null
-#  university            :string           not null
+#  university            :string
 #  other_university      :string
-#  travel_origin         :string           not null
+#  travel_origin         :string
 #  graduation_season     :string           not null
 #  graduation_year       :integer          not null
-#  major                 :text             not null, is an Array
+#  major                 :text             is an Array
 #  hackathons            :integer          not null
 #  github                :string
 #  linkedin              :string
@@ -46,7 +46,7 @@ class Application < ApplicationRecord
   validates :birth_day,         presence: true, numericality: {
     only_integer: true,
     greater_than: 0,
-    less_than: 31
+    less_than: 32
   }
 
   validates :birth_month,       presence: true, numericality: {
@@ -63,15 +63,12 @@ class Application < ApplicationRecord
 
   validates :education,         presence: true
   validates :outside_north_america,         presence: true
-  validates :university,        presence: true
-  validates :travel_origin,     presence: true
   validates :graduation_season, presence: true
   validates :graduation_year,   presence: true, numericality: {
     only_integer: true,
     greater_than: 2015
   }
 
-  validates :major,             presence: true
   validates :hackathons,        presence: true, numericality: {
     only_integer: true,
     greater_than: 0

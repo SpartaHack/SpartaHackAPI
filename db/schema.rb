@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161102104603) do
+ActiveRecord::Schema.define(version: 20161102170658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,12 +28,12 @@ ActiveRecord::Schema.define(version: 20161102104603) do
     t.integer  "birth_month",           null: false
     t.integer  "birth_year",            null: false
     t.string   "education",             null: false
-    t.string   "university",            null: false
+    t.string   "university"
     t.string   "other_university"
-    t.string   "travel_origin",         null: false
+    t.string   "travel_origin"
     t.string   "graduation_season",     null: false
     t.integer  "graduation_year",       null: false
-    t.text     "major",                 null: false, array: true
+    t.text     "major",                              array: true
     t.integer  "hackathons",            null: false
     t.string   "github"
     t.string   "linkedin"
