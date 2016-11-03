@@ -2,8 +2,8 @@ module Authenticable
   include ActionController::HttpAuthentication::Token::ControllerMethods
   # Devise methods overwrites
   def current_user
-    Rails.logger.debug "User: #{User.find_by(auth_token: request.headers['HTTP_USER_TOKEN'])}"
-    Rails.logger.debug "Header: #{request.headers['HTTP_USER_TOKEN']}"
+    Rails.logger.debug "User: #{User.find_by(auth_token: request.headers['USER_TOKEN'])}"
+    Rails.logger.debug "Header: #{request.headers}"
     @current_user ||= User.find_by(auth_token: request.headers['HTTP_USER_TOKEN'])
   end
 
