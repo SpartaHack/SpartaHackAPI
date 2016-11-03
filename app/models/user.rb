@@ -31,13 +31,13 @@ class User < ActiveRecord::Base
   has_many  :faq
   has_one   :application
 
-  validates :first_name, presence: true
-  validates :last_name,  presence: true
+  # validates :first_name, presence: true
+  # validates :last_name,  presence: true
   validates :auth_token, uniqueness: true
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  :recoverable, :rememberable, :trackable, :validatable
 
   before_create :generate_authentication_token!
 
