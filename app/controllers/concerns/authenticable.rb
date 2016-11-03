@@ -1,9 +1,18 @@
 module Authenticable
   include ActionController::HttpAuthentication::Token::ControllerMethods
   # Devise methods overwrites
+  def log_headers
+    http_envs = {}.tap do |envs|
+      request.headers.each do |key, value|
+        envs[key] = value if key.downcase.starts_with?('http')
+      end
+    end
+
+    Rails.logger.debug "Received #{request.method.inspect} to #{request.url.inspect} from #{request.remote_ip.inspect}. Processing with headers #{http_envs.inspect} and params #{params.inspect}"
+  end
+
   def current_user
-    Rails.logger.debug "User: #{User.find_by(auth_token: request.headers['USER_TOKEN'])}"
-    Rails.logger.debug "Header: #{request.headers}"
+    log_headers
     @current_user ||= User.find_by(auth_token: request.headers['HTTP_USER_TOKEN'])
   end
 
