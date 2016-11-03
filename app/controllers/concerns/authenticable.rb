@@ -8,9 +8,13 @@ module Authenticable
       end
     end
 
-    Rails.logger.debug "Received #{request.method.inspect} to #{request.url.inspect} from #{request.remote_ip.inspect}. Processing with headers #{http_envs.inspect} and params #{params.inspect}"
+    Rails.logger.debug "Received #{request.method.inspect} to #{request.url.inspect} from #{request.remote_ip.inspect}. Processing with headers #{http_envs.inspect} and params #{params.inspect} "
+    Rails.logger.debug "Header #{request.headers['X-WWW-USER-TOKEN']} "
+    Rails.logger.debug "Header #{request.headers['HTTP_X_WWW_USER_TOKEN']} "
+    Rails.logger.debug "Header #{request.headers['HTTP-X-WWW-USER-TOKEN']} "
+    Rails.logger.debug "Header #{request.headers['X_WWW_USER_TOKEN']} "
   end
-    # Devise methods overwrites
+  # Devise methods overwrites
   def current_user
     log_headers
     @current_user ||= User.find_by(auth_token: request.headers['X-WWW-USER-TOKEN'])
