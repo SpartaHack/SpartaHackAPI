@@ -12,7 +12,7 @@ RSpec.describe Authenticable do
   describe "#current_user" do
     before do
       @user = FactoryGirl.create :user
-      request.headers["Authorization"] = @user.auth_token
+      request.headers["X-WWW-USER-TOKEN"] = @user.auth_token
       allow(authentication).to receive_message_chain(:request).and_return(request)
     end
     it "returns the user from the authorization header" do

@@ -1,20 +1,18 @@
 module Authenticable
   include ActionController::HttpAuthentication::Token::ControllerMethods
 
-  def log_headers
-    http_envs = {}.tap do |envs|
-      request.headers.each do |key, value|
-        envs[key] = value if key.downcase.starts_with?('http')
-      end
-    end
+  # def log_headers
+  #   http_envs = {}.tap do |envs|
+  #     request.headers.each do |key, value|
+  #       envs[key] = value if key.downcase.starts_with?('http')
+  #     end
+  #   end
+  #
+  #   Rails.logger.debug "Received #{request.method.inspect} to #{request.url.inspect} from #{request.remote_ip.inspect}. Processing with headers #{http_envs.inspect} and params #{params.inspect} "
+  # end
 
-    Rails.logger.debug "Received #{request.method.inspect} to #{request.url.inspect} from #{request.remote_ip.inspect}. Processing with headers #{http_envs.inspect} and params #{params.inspect} "
-    Rails.logger.debug "Header #{request.headers['X-WWW-USER-TOKEN']} "
-    Rails.logger.debug "Header #{request.headers['HTTP_X_WWW_USER_TOKEN']} "
-  end
   # Devise methods overwrites
   def current_user
-    log_headers
     @current_user ||= User.find_by(auth_token: request.headers['X-WWW-USER-TOKEN'])
   end
 

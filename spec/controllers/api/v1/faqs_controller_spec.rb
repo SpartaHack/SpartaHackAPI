@@ -30,7 +30,7 @@ RSpec.describe Api::V1::FaqsController, type: :controller do
 
   before do
     valid_creator = FactoryGirl.create :faq_director
-    api_authorization_header valid_creator.user.auth_token
+    user_authorization_header valid_creator.user.auth_token
   end
 
   let(:valid_attributes) {
@@ -123,7 +123,7 @@ RSpec.describe Api::V1::FaqsController, type: :controller do
     context "director tries to delete" do
       before do
         @faq = FactoryGirl.create :faq_director
-        api_authorization_header @faq.user.auth_token
+        user_authorization_header @faq.user.auth_token
       end
 
       it "destroys the requested faq" do
@@ -136,7 +136,7 @@ RSpec.describe Api::V1::FaqsController, type: :controller do
     context "hacker tries to delete" do
       before do
         @faq = FactoryGirl.create :faq_hacker
-        api_authorization_header @faq.user.auth_token
+        user_authorization_header @faq.user.auth_token
         delete :destroy, params: {id: @faq.id}
       end
 

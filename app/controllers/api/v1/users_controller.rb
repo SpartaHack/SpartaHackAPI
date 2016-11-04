@@ -32,7 +32,11 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def destroy
-    Application.find_by(:user_id => current_user.id).destroy
+    app = Application.find_by(:user_id => current_user.id)
+    unless app.blank?
+      app.destroy
+    end
+
     current_user.destroy
     head 204
   end

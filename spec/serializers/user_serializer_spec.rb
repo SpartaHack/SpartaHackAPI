@@ -10,7 +10,7 @@ RSpec.describe UserSerializer, :type => :serializer do
 
     it "should only include id, email, auth_token, and roles as an attribute" do
       expect(@serialized.keys).to eq ["id", "email", "first_name", "last_name",
-        "auth_token", "roles"]
+      "auth_token", "roles", "application"]
     end
 
     it "should match id as an attribute" do
