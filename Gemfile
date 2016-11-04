@@ -65,16 +65,17 @@ gem 'cancancan', '~> 1.10'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+gem "simplecov", group: :test, require: nil
 gem "codeclimate-test-reporter", group: :test, require: nil
 
 gem 'rake'
 %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
-    gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'master'
+  gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'master'
 end
 
-gem 'capistrano', '>= 3.6.1'      
-gem 'capistrano-rvm'    
-gem 'capistrano-rails'  
-gem 'capistrano-bundler' 
-gem 'capistrano3-puma'  
+gem 'capistrano', '>= 3.6.1'
+gem 'capistrano-rvm'
+gem 'capistrano-rails'
+gem 'capistrano-bundler'
+gem 'capistrano3-puma'
 gem 'capistrano-rails-collection'
