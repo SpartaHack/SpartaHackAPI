@@ -313,6 +313,7 @@ DEPENDENCIES
   rspec-support!
   sass-rails (~> 5.0)
   shoulda-matchers (~> 3.1)
+  simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks
