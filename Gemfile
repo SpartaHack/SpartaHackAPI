@@ -53,7 +53,7 @@ group :development do
   gem "rails-erd"
 end
 
-group :test do
+group :development, :test do
   gem "factory_girl_rails"
   gem 'ffaker'
   gem 'shoulda-matchers', '~> 3.1'

@@ -113,9 +113,9 @@ describe Api::V1::UsersController do
 
   describe "DELETE #destroy" do
     before(:each) do
-      @user = FactoryGirl.create :user
-      user_authorization_header @user.auth_token
-      delete :destroy, params: { id: @user.id }
+      @application_with_user = FactoryGirl.create :application
+      user_authorization_header @application_with_user.user.auth_token
+      delete :destroy, params: { id: @application_with_user.user.id }
     end
 
     it { should respond_with 204 }

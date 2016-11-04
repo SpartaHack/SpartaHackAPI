@@ -15,10 +15,6 @@ module Request
       request.headers['Content-Type'] = format.to_s
     end
 
-    def api_authorization_header(token)
-      request.headers['Authorization'] =  token
-    end
-
     def user_authorization_header(token)
       request.headers['X-WWW-USER-TOKEN'] =  token
     end
