@@ -18,6 +18,7 @@ before_install:
 install:
   - bundle install
   - rake db:drop db:create db:migrate
+  - bundle exec rake all
 
 rvm:
   - 2.2.5
