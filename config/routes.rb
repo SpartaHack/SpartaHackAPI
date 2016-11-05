@@ -60,7 +60,7 @@ Rails.application.routes.draw do
         resources :sessions, :only => [:create, :destroy]
         resources :faqs
         resources :applications
-        resource :batches
+        resource :batch
 
         get "/map" => "pdf#index"
         get "/companies" => "companies#index"
