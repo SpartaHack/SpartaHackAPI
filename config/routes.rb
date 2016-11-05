@@ -40,6 +40,7 @@ Rails.application.routes.draw do
         resources :sessions, :only => [:create, :destroy]
         resources :faqs
         resources :applications
+        resource :batch
 
         get "/map" => "pdf#index"
         get "/companies" => "companies#index"
@@ -59,6 +60,7 @@ Rails.application.routes.draw do
         resources :sessions, :only => [:create, :destroy]
         resources :faqs
         resources :applications
+        resource :batches
 
         get "/map" => "pdf#index"
         get "/companies" => "companies#index"
