@@ -65,8 +65,8 @@ gem 'cancancan', '~> 1.10'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem "codeclimate-test-reporter", group: :test, require: nil
-gem 'simplecov', :require => false, :group => :test
+gem "codeclimate-test-reporter", group: :test, require: true
+gem 'simplecov', :require => true, :group => :test
 
 gem 'rake'
 %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
