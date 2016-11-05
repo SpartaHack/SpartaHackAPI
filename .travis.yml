@@ -19,6 +19,10 @@ install:
   - bundle install
   - rake db:drop db:create db:migrate
 
+script:
+- bundle exec rake
+- bundle exec codeclimate-test-reporter
+
 rvm:
   - 2.2.5
 
