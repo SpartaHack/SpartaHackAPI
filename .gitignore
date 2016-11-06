@@ -24,5 +24,8 @@ releases/
 repo/
 shared/
 
+config/nginx.conf
+config/deploy/production.rb
+
 #codeclimate
 coverage/
