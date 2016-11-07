@@ -4,6 +4,13 @@ class Api::V1::UsersController < ApplicationController
   before_action :authenticate_with_token!, only: [:update, :destroy]
   respond_to :json
 
+  def index
+    @applications = User.all
+
+    render json: @applications
+  end
+
+
   def show
     if User.exists? id: params[:id]
       render json: User.find(params[:id]), include: :application, status: 200
