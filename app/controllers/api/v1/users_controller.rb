@@ -1,22 +1,20 @@
 class Api::V1::UsersController < ApplicationController
   before_action :geo_ip
+  before_action :find_user_by_id, only: [:show]
   before_action :restrict_access, only: [:show, :create]
-  before_action :authenticate_with_token!, only: [:update, :destroy]
+  before_action :authenticate_with_token!, only: [:index, :update, :destroy]
+  load_and_authorize_resource find_by: :id
   respond_to :json
 
   def index
-    @applications = User.all
+    @users = User.all
 
-    render json: @applications
+    render json: @users
   end
 
 
   def show
-    if User.exists? id: params[:id]
-      render json: User.find(params[:id]), include: :application, status: 200
-    else
-      render json: { errors: { user: ["does not exist"] } }, status: 422
-    end
+    render json: User.find(params[:id]), include: :application, status: 200
   end
 
   def create
@@ -52,6 +50,13 @@ class Api::V1::UsersController < ApplicationController
 
   def user_params
     params.permit(:email, :password, :password_confirmation,
-    :first_name, :last_name, roles: []).merge(:roles => ['hacker'])
+    :first_name, :last_name, roles: []).merge(:roles => current_user ? current_user.roles : ['hacker'] )
+  end
+
+  # render before CanCan Exception
+  def find_user_by_id
+    if !User.exists? id: params[:id]
+      render json: { errors: { user: ["does not exist"] } }, status: 422
+    end
   end
 end

@@ -5,20 +5,23 @@ class Ability
     user ||= User.new
     if user.has_role? :director
       can :manage, :all
-    # elsif user.has_role? :judge
-    # elsif user.has_role? :mentor
-    # elsif user.has_role? :sponsor
+      # elsif user.has_role? :judge
+      # elsif user.has_role? :mentor
+      # elsif user.has_role? :sponsor
     elsif user.has_role? :organizer
       can :manage, Faq
-    # elsif user.has_role? :volunteer
+      # elsif user.has_role? :volunteer
     elsif user.has_role? :hacker
       can :update, User, :id => user.id
+      can :read, User, :id => user.id
       can :destroy, User, :id => user.id
       can :manage, Application, :user_id => user.id
       can :read, Faq
+      cannot :index, User
     else # Just API Token, this is temporary.
       can :read, :all
-      cannot :read, [User, Application]
+      cannot :manage, [User, Application]
+      can :create, User
     end
     # Define abilities for the passed in user here. For example:
     #

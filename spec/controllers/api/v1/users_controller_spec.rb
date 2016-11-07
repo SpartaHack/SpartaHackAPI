@@ -4,24 +4,69 @@ describe Api::V1::UsersController do
   let(:api_key){ FactoryGirl.create(:api_key) }
   before {request.headers["HTTP_AUTHORIZATION"] = "Token token=\"#{api_key.access_token}\"" }
 
+  describe "GET #index" do
+    context "when user token is a director's" do
+      it "returns a success response" do
+        user = FactoryGirl.create :director
+        user_authorization_header user.auth_token
+        get :index
+        expect(response).to be_success
+      end
+    end
+
+    context "when user token does not exist" do
+      it "returns a 401 response" do
+        get :index
+        expect(response.status).to eq 401
+      end
+    end
+
+    context "when user is not a director" do
+      it "returns a 401 response" do
+        user = FactoryGirl.create :user
+        user_authorization_header user.auth_token
+        get :index
+        expect(response.status).to eq 401
+      end
+    end
+  end
+
   describe "GET #show" do
     context "when user id exists" do
       before(:each) do
         @user = FactoryGirl.create :user
+        user_authorization_header @user.auth_token
         get :show, params: {id: @user.id}
 
       end
 
-      it "returns the information about a reporter on a hash" do
+      it "returns the information about a user on a hash" do
         user_response = json_response
         expect(user_response[:email]).to eql @user.email
       end
 
       it { should respond_with 200 }
+
+      context "when a director accesses a hacker" do
+        before do
+          @director = FactoryGirl.create :director
+          user_authorization_header @director.auth_token
+          get :show, params: {id: @user.id}
+        end
+
+        it "returns the information about a user on a hash" do
+          user_response = json_response
+          expect(user_response[:email]).to eql @user.email
+        end
+
+        it { should respond_with 200 }
+      end
     end
 
     context "when user id does not exist" do
       before(:each) do
+        @user = FactoryGirl.create :director
+        user_authorization_header @user.auth_token
         get :show, params: {id: 999999999}
       end
 
