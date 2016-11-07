@@ -22,6 +22,7 @@ class Ability
       can :read, :all
       cannot :manage, [User, Application]
       can :create, User
+      can :read, User
     end
     # Define abilities for the passed in user here. For example:
     #
