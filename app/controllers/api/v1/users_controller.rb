@@ -50,7 +50,7 @@ class Api::V1::UsersController < ApplicationController
 
   def user_params
     params.permit(:email, :password, :password_confirmation,
-    :first_name, :last_name, roles: []).merge(:roles => current_user ? current_user.roles : ['hacker'] )
+    :first_name, :last_name, roles: []).merge(:roles => current_user.present? ? current_user.roles : ['hacker'] )
   end
 
   # render before CanCan Exception
