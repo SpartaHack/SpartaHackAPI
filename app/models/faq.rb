@@ -8,6 +8,8 @@
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  display    :boolean          not null
+#  priority   :integer          not null
 #
 # Indexes
 #
@@ -23,4 +25,5 @@ class Faq < ActiveRecord::Base
 
   validates :question, :presence => true
   validates :answer, :presence => true
+  validates :priority, :presence => true
 end

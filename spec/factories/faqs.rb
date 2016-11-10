@@ -22,14 +22,16 @@ FactoryGirl.define do
   factory :faq do
     question "MyStringExample"
     answer "MyTextExample"
+    display '1'
+    priority 2
 
     factory :faq_director do
-  		association :user, factory: :director
-  	end
+      association :user, factory: :director
+    end
 
     factory :faq_hacker do
-  		association :user, factory: :user
-  	end
+      association :user, factory: :user
+    end
 
   end
 end

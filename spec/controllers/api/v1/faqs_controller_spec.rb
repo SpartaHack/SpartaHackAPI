@@ -34,7 +34,7 @@ RSpec.describe Api::V1::FaqsController, type: :controller do
   end
 
   let(:valid_attributes) {
-    {:question => "question", :answer => "answer"}
+    {:question => "question", :answer => "answer", :display => 1, :priority => 2 }
   }
 
   let(:invalid_attributes) {

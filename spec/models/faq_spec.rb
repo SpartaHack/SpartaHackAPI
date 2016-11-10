@@ -27,10 +27,13 @@ RSpec.describe Faq do
 
   it { should respond_to(:question) }
   it { should respond_to(:answer) }
+  it { should respond_to(:display) }
+  it { should respond_to(:priority) }
 
   it { should be_valid }
 
   it { should validate_presence_of(:question) }
   it { should validate_presence_of(:answer) }
+  it { should validate_presence_of(:priority) }
 
 end

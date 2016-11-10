@@ -9,7 +9,7 @@ RSpec.describe FaqSerializer, :type => :serializer do
     end
 
     it "should only include id, question, answer, and user as an attribute" do
-      expect(@serialized.keys).to eq ["id", "question", "answer", "user"]
+      expect(@serialized.keys).to eq ["id", "priority", "display", "question", "answer", "user"]
     end
 
     it "should match id as an attribute" do
@@ -26,6 +26,14 @@ RSpec.describe FaqSerializer, :type => :serializer do
 
     it "should match user to user_id" do
       expect(@serialized["user"]).to eq @faq.user_id
+    end
+
+    it "should match answer as an attribute" do
+      expect(@serialized["display"]).to eq @faq.display
+    end
+
+    it "should match answer as an attribute" do
+      expect(@serialized["priority"]).to eq @faq.priority
     end
 
   end
