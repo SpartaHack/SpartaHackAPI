@@ -3,7 +3,7 @@ class ApplicationSerializer < ActiveModel::Serializer
   :gender, :race, :education, :university, :other_university,
   :travel_origin, :graduation_season, :graduation_year, :major,
   :hackathons, :github, :linkedin, :website, :devpost, :other_link,
-  :statement, :outside_north_america
+  :statement, :outside_north_america, :created_at
 
   belongs_to :user
 
