@@ -31,6 +31,7 @@
 require 'api_constraints'
 
 Rails.application.routes.draw do
+
   # Api definition
   # constraints :subdomain => 'api' do
   namespace :api, path: nil, defaults: {format: 'json'} do
@@ -40,6 +41,7 @@ Rails.application.routes.draw do
       resources :sessions, :only => [:create, :destroy]
       resources :faqs
       resources :applications
+      resources :sponsors
       resource :batch
 
       get "/map" => "pdf#index"
@@ -60,6 +62,7 @@ Rails.application.routes.draw do
         resources :sessions, :only => [:create, :destroy]
         resources :faqs
         resources :applications
+        resources :sponsors
         resource :batch
 
         get "/map" => "pdf#index"

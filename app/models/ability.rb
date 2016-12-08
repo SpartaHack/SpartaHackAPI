@@ -10,17 +10,18 @@ class Ability
       # elsif user.has_role? :sponsor
     elsif user.has_role? :organizer
       can :manage, Faq
+      can :manage, Sponsor
       # elsif user.has_role? :volunteer
     elsif user.has_role? :hacker
       can :update, User, :id => user.id
       can :read, User, :id => user.id
       can :destroy, User, :id => user.id
       can :manage, Application, :user_id => user.id
-      can :read, Faq
+      can :read, [Faq, Sponsor]
       cannot :index, User
-    else # Just API Token, this is temporary.
+    else # Just API Token
+      cannot :manage, [User, Application, Faq, Sponsor]
       can :read, :all
-      cannot :manage, [User, Application]
       can :create, User
       can :read, User
     end
