@@ -26,6 +26,8 @@
 #  race                  :text             is an Array
 #  gender                :string
 #  outside_north_america :string
+#  status                :string
+#  accepted_date         :datetime
 #
 # Indexes
 #
