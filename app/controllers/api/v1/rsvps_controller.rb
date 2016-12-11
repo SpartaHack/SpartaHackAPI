@@ -1,4 +1,5 @@
 class Api::V1::RsvpsController < ApplicationController
+  require 'pp'
   load_and_authorize_resource
   before_action :geo_ip
   before_action :set_rsvp, only: [:show, :update, :destroy]
@@ -70,6 +71,7 @@ class Api::V1::RsvpsController < ApplicationController
 
   def create_data_uri
     if rsvp_params[:resume].present?
+      pp rsvp_params[:resume].content_type
       data = Base64.encode64(rsvp_params[:resume].read).delete("\n")
       rsvp_params[:resume] = "data:application/pdf;base64,#{data}"
     end
@@ -92,6 +94,11 @@ class Api::V1::RsvpsController < ApplicationController
         errors[:errors][:please].push " choose your job preference."
       end
     end
+
+    if rsvp_params[:resume].present? && rsvp_params[:resume].content_type != "application/pdf"
+      errors[:errors][:please].push "upload a resume as a pdf."
+    end
+
     errors
   end
 
