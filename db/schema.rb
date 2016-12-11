@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161209014805) do
+ActiveRecord::Schema.define(version: 20161209020953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,20 @@ ActiveRecord::Schema.define(version: 20161209014805) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "rsvps", force: :cascade do |t|
+    t.integer  "user_id",                    null: false
+    t.string   "attending",                  null: false
+    t.text     "dietary_restrictions"
+    t.string   "other_dietary_restrictions"
+    t.text     "resume"
+    t.string   "shirt_size"
+    t.string   "carpool_sharing"
+    t.string   "jobs"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["user_id"], name: "index_rsvps_on_user_id", using: :btree
+  end
+
   create_table "sponsors", force: :cascade do |t|
     t.string   "name",           null: false
     t.string   "level",          null: false
@@ -112,4 +126,5 @@ ActiveRecord::Schema.define(version: 20161209014805) do
 
   add_foreign_key "applications", "users"
   add_foreign_key "faqs", "users"
+  add_foreign_key "rsvps", "users"
 end

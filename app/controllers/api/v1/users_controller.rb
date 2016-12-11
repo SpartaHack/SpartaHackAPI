@@ -14,7 +14,7 @@ class Api::V1::UsersController < ApplicationController
 
 
   def show
-    render json: User.find(params[:id]), include: :application, status: 200
+    render json: User.find(params[:id]), include: [:application, :rsvp], status: 200
   end
 
   def create
@@ -42,6 +42,10 @@ class Api::V1::UsersController < ApplicationController
       app.destroy
     end
 
+    rsvp = Rsvp.find_by(:user_id => current_user.id)
+    unless rsvp.blank?
+      rsvp.destroy
+    end
     current_user.destroy
     head 204
   end

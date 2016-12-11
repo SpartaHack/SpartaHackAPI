@@ -17,10 +17,11 @@ class Ability
       can :read, User, :id => user.id
       can :destroy, User, :id => user.id
       can :manage, Application, :user_id => user.id
+      can :manage, Rsvp, :user_id => user.id
       can :read, [Faq, Sponsor]
       cannot :index, User
     else # Just API Token
-      cannot :manage, [User, Application, Faq, Sponsor]
+      cannot :manage, [User, Application, Rsvp, Faq, Sponsor]
       can :read, :all
       can :create, User
       can :read, User

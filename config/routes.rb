@@ -43,12 +43,14 @@ Rails.application.routes.draw do
       resources :applications
       resources :sponsors
       resource :batch
+      resources :rsvps
 
       get "/map" => "pdf#index"
       get "/companies" => "companies#index"
       get "/schedule" => "schedule#index"
       get "/prizes" => "prizes#index"
       get "/announcements" => "announcements#index"
+
 
     end
   end
@@ -64,6 +66,7 @@ Rails.application.routes.draw do
         resources :applications
         resources :sponsors
         resource :batch
+        resources :rsvps
 
         get "/map" => "pdf#index"
         get "/companies" => "companies#index"

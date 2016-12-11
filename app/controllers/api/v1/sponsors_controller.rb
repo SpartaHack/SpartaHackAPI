@@ -76,8 +76,6 @@ class Api::V1::SponsorsController < ApplicationController
         else
           sponsor_params[param] = "data:image/png;base64,#{data}"
         end
-      else
-        pp sponsor_params
       end
     end
   end
