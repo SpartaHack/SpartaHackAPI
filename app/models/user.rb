@@ -30,7 +30,7 @@
 class User < ActiveRecord::Base
   has_many  :faq
   has_one   :application
-  has_one   :rsvp 
+  has_one   :rsvp
 
   validates :first_name, presence: true
   validates :last_name,  presence: true
@@ -64,6 +64,14 @@ class User < ActiveRecord::Base
 
   def has_role?(role)
     roles.include?(role)
+  end
+
+  def self.generate_password_token
+    loop do
+      @token = Devise.friendly_token
+      break unless User.exists?(reset_password_token: @token)
+    end
+    @token
   end
 
 end

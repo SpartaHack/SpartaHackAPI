@@ -51,6 +51,10 @@ Rails.application.routes.draw do
       get "/prizes" => "prizes#index"
       get "/announcements" => "announcements#index"
 
+      post "users/reset_password_token" => "users#reset_password_token"
+      post "users/reset_password" => "users#reset_password"
+      post "users/change_password" => "users#change_password"
+
 
     end
   end

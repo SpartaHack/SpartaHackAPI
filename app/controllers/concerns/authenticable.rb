@@ -24,6 +24,14 @@ module Authenticable
     current_user.present?
   end
 
+  def authenticate_password_token!
+    render json: { errors: { password: ["token missing or invalid"] } }, status: :unauthorized unless password_token?
+  end
+
+  def password_token?
+    User.exists?(reset_password_token: request.headers['X-WWW-RESET-PASSWORD-TOKEN'])
+  end
+
   def restrict_access
     authenticate_or_request_with_http_token do |token|
       if ApiKey.exists? access_token: token

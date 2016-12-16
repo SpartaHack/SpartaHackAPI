@@ -2,7 +2,8 @@ class Api::V1::UsersController < ApplicationController
   before_action :geo_ip
   before_action :find_user_by_id, only: [:show]
   before_action :restrict_access, only: [:show, :create]
-  before_action :authenticate_with_token!, only: [:index, :update, :destroy]
+  before_action :authenticate_with_token!, only: [:index, :update, :destroy, :change_password]
+  before_action :authenticate_password_token!, only: [:reset_password]
   load_and_authorize_resource find_by: :id
   respond_to :json
 
@@ -36,6 +37,45 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def reset_password_token
+    user = current_user
+    user.reset_password_token = User.generate_password_token
+    if user.save
+      render json: user, status: 201, location: [:api, user]
+    else
+      render json: { errors: user.errors }, status: 422
+    end
+  end
+
+  def change_password
+    unless password_params[:current_password].present?
+      render json: { errors: { current_password: ["is required"] } }, status: 422 and return
+    end
+
+    user = current_user
+    if user.update_with_password(password_params)
+      render json: user, status: 200, location: [:api, user]
+    else
+      render json: { errors: user.errors }, status: 422
+    end
+  end
+
+  def reset_password
+    user = current_user
+    if password_params[:password].blank? or password_params[:password_confirmation].blank?
+      render json: { errors: { new: ["password is required"] } }, status: 422 and return
+    end
+
+    user.password = password_params[:password]
+    user.password_confirmation = password_params[:password_confirmation]
+    user.reset_password_token = nil
+    if user.save
+      render json: user, status: 200, location: [:api, user]
+    else
+      render json: { errors: user.errors }, status: 422
+    end
+  end
+
   def destroy
     app = Application.find_by(:user_id => current_user.id)
     unless app.blank?
@@ -55,6 +95,10 @@ class Api::V1::UsersController < ApplicationController
   def user_params
     params.permit(:email, :password, :password_confirmation,
     :first_name, :last_name, roles: []).merge(:roles => current_user.present? ? current_user.roles : ['hacker'] )
+  end
+
+  def password_params
+    params.permit(:current_password, :password, :password_confirmation)
   end
 
   # render before CanCan Exception

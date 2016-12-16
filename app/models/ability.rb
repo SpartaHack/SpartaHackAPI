@@ -15,6 +15,7 @@ class Ability
     elsif user.has_role? :hacker
       can :update, User, :id => user.id
       can :read, User, :id => user.id
+      can :reset_password_token, User
       can :destroy, User, :id => user.id
       can :manage, Application, :user_id => user.id
       can :manage, Rsvp, :user_id => user.id
