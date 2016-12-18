@@ -73,8 +73,6 @@ class Api::V1::UsersController < ApplicationController
       user = User.where(reset_password_token: request.headers['X-WWW-RESET-PASSWORD-TOKEN']).first
     end
 
-    p password_params[:password]
-    p password_params[:password_confirmation]
     if password_params[:password].blank? or password_params[:password_confirmation].blank?
       render json: { errors: { all: ["fields are required"] } }, status: 422 and return
     end
