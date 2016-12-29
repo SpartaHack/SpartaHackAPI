@@ -50,6 +50,7 @@ Rails.application.routes.draw do
       get "/schedule" => "schedule#index"
       get "/prizes" => "prizes#index"
       get "/announcements" => "announcements#index"
+      post "/announcements" => "announcements#create"
 
       post "users/request_password_token" => "users#request_password_token"
       post "users/reset_password" => "users#reset_password"

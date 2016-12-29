@@ -11,4 +11,38 @@ class Api::V1::AnnouncementsController < ApplicationController
     ] }, status: 200
   end
 
+  # POST /applications
+  def create
+
+
+    if Rpush::Apns::App.find_by_name(announcement_params[:cert]).nil?
+      unless File.exist?("config/#{announcement_params[:cert]}.pem")
+        render json: { errors: { invalid: ["bogdan says oops"] } }, status: 422 and return
+      end
+      app = Rpush::Apns::App.new
+      app.name = announcement_params[:cert]
+      app.certificate = File.read("config/#{announcement_params[:cert]}.pem")
+      app.environment = announcement_params[:env] # APNs environment.
+      app.password = ""
+      app.connections = 1
+      app.save!
+    end
+
+    n = Rpush::Apns::Notification.new
+    n.app = Rpush::Apns::App.find_by_name(announcement_params[:cert])
+    n.device_token = announcement_params[:token] # 64-character hex string
+    n.alert = announcement_params[:text]
+    n.data = { alert: announcement_params[:text] }
+    n.save!
+
+    Rpush.push
+
+    render json: { push: ["Things went well, hopefully"]}, status: :created
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def announcement_params
+    params.permit(:token, :text, :cert, :env)
+  end
+
 end
