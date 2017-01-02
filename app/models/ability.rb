@@ -16,10 +16,15 @@ class Ability
       can :update, User, :id => user.id
       can :read, User, :id => user.id
       can :destroy, User, :id => user.id
+      can :create, Installation
+      can :read, Installation, :user_id => user.id
+      can :update, Installation, :user_id => user.id
+      can :destroy, Installation, :user_id => user.id
       can :manage, Application, :user_id => user.id
       can :manage, Rsvp, :user_id => user.id
       can :read, [Faq, Sponsor]
       cannot :index, User
+      cannot :index, Installation
     else # Just API Token
       cannot :manage, [User, Application, Rsvp, Faq, Sponsor]
       can :read, :all
@@ -27,6 +32,8 @@ class Ability
       can :reset_password, User
       can :create, User
       can :read, User
+      can :create, Installation
+      can :read, Installation
     end
     # Define abilities for the passed in user here. For example:
     #

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161228211313) do
+ActiveRecord::Schema.define(version: 20170102010841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,16 @@ ActiveRecord::Schema.define(version: 20161228211313) do
     t.bigint   "count",      default: 0, null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "installations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "device_type"
+    t.text     "token"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["token"], name: "index_installations_on_token", unique: true, using: :btree
+    t.index ["user_id"], name: "index_installations_on_user_id", using: :btree
   end
 
   create_table "rpush_apps", force: :cascade do |t|
@@ -185,5 +195,6 @@ ActiveRecord::Schema.define(version: 20161228211313) do
 
   add_foreign_key "applications", "users"
   add_foreign_key "faqs", "users"
+  add_foreign_key "installations", "users"
   add_foreign_key "rsvps", "users"
 end

@@ -26,6 +26,7 @@ gem 'rack-cors'
 
 # To protect our API from DDoS and brute force attacks
 gem 'rack-attack'
+gem 'net-http-persistent', "< 3.0"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

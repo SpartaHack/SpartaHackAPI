@@ -13,15 +13,21 @@ class Api::V1::AnnouncementsController < ApplicationController
 
   # POST /applications
   def create
+    if announcement_params[:type].downcase == "ios" || announcement_params[:type].nil?
+      ios_push
+    else
+      android_push
+    end
+  end
 
-
+  def ios_push
     if Rpush::Apns::App.find_by_name(announcement_params[:cert]).nil?
-      unless File.exist?("config/#{announcement_params[:cert]}.pem")
+      unless File.exist?("~/apps/SpartaHack-API/config/#{announcement_params[:cert]}.pem")
         render json: { errors: { invalid: ["bogdan says oops"] } }, status: 422 and return
       end
       app = Rpush::Apns::App.new
       app.name = announcement_params[:cert]
-      app.certificate = File.read("config/#{announcement_params[:cert]}.pem")
+      app.certificate = File.read("~/apps/SpartaHack-API/config/#{announcement_params[:cert]}.pem")
       app.environment = announcement_params[:env] # APNs environment.
       app.password = ""
       app.connections = 1
@@ -32,7 +38,7 @@ class Api::V1::AnnouncementsController < ApplicationController
     n.app = Rpush::Apns::App.find_by_name(announcement_params[:cert])
     n.device_token = announcement_params[:token] # 64-character hex string
     n.alert = announcement_params[:text]
-    n.data = { alert: announcement_params[:text] }
+    n.data = { alert: announcement_params[:text], badge: "Increment", sound: "default" }
     n.save!
 
     Rpush.push
@@ -40,9 +46,36 @@ class Api::V1::AnnouncementsController < ApplicationController
     render json: { push: ["Things went well, hopefully"]}, status: :created
   end
 
+  def android_push
+    # if Rpush::Apns::App.find_by_name("Android17").nil?
+    #   app = Rpush::Gcm::App.new
+    #   app.name = "Android17"
+    #   app.auth_key = ENV['ANDROID_PUSH_TOKEN']
+    #   app.connections = 1
+    #   app.save!
+    # end
+
+    n = Rpush::Gcm::Notification.new
+    n.app = Rpush::Gcm::App.find_by_name("Android17")
+    n.registration_ids = [announcement_params[:token]]
+    n.data = { message: announcement_params[:text] }
+    n.priority = 'high'        # Optional, can be either 'normal' or 'high'
+    n.content_available = true # Optional
+    # Optional notification payload. See the reference below for more keys you can use!
+    n.notification = { body: announcement_params[:text],
+      title: 'Hello'
+    }
+    n.save!
+
+    Rpush.push
+
+    render json: { push: ["Things went well, hopefully"]}, status: :created
+  end
+
+  private
   # Only allow a trusted parameter "white list" through.
   def announcement_params
-    params.permit(:token, :text, :cert, :env)
+    params.permit(:token, :text, :cert, :env, :type)
   end
 
 end
