@@ -59,7 +59,7 @@ class Api::V1::AnnouncementsController < ApplicationController
 
   def ios_push
     if check_ios_cert
-      ios_devices = Installation.where(:device_type => "ios")
+      ios_devices = Installation.where(:device_type => "iOS")
 
       ios_devices.each do |device|
         n = Rpush::Apns::Notification.new
@@ -133,7 +133,6 @@ class Api::V1::AnnouncementsController < ApplicationController
 
   def check_ios_cert
     if Rpush::Apns::App.find_by_name(ENV['IOS_PUSH_CERT_NAME']).nil?
-      p "~/SpartaHack-API/config/#{ENV['IOS_PUSH_CERT_NAME']}.pem"
       unless File.exist?(ENV['IOS_PUSH_CERT_LOCATION'])
         return false
       end
