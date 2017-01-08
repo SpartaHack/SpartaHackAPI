@@ -33,34 +33,32 @@ require 'api_constraints'
 Rails.application.routes.draw do
 
   # Api definition
-  constraints :subdomain => 'api' do
-    namespace :api, path: nil, defaults: {format: 'json'} do
-      scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+  # constraints :subdomain => 'api' do
+  namespace :api, path: nil, defaults: {format: 'json'} do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
 
-        resources :users
-        resources :sessions, :only => [:create, :destroy]
-        resources :faqs
-        resources :applications
-        resources :sponsors
-        resource :batch
-        resources :rsvps
-        resources :installations
+      resources :users
+      resources :sessions, :only => [:create, :destroy]
+      resources :faqs
+      resources :applications
+      resources :sponsors
+      resource :batch
+      resources :rsvps
+      resources :installations
+      resources :announcements
 
-        get "/map" => "pdf#index"
-        get "/companies" => "companies#index"
-        get "/schedule" => "schedule#index"
-        get "/prizes" => "prizes#index"
-        get "/announcements" => "announcements#index"
-        post "/announcements" => "announcements#create"
+      get "/map" => "pdf#index"
+      get "/schedule" => "schedule#index"
+      get "/prizes" => "prizes#index"
 
-        post "users/request_password_token" => "users#request_password_token"
-        post "users/reset_password" => "users#reset_password"
-        post "users/change_password" => "users#change_password"
+      post "users/request_password_token" => "users#request_password_token"
+      post "users/reset_password" => "users#reset_password"
+      post "users/change_password" => "users#change_password"
 
 
-      end
     end
   end
+  # end
 
   constraints :subdomain => 'd.api' do
     namespace :api, path: nil, defaults: {format: 'json'} do
