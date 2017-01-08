@@ -97,6 +97,17 @@ class Api::V1::UsersController < ApplicationController
     unless rsvp.blank?
       rsvp.destroy
     end
+
+    batch = Batch.where("hackers::varchar[]  @> ARRAY['#{current_user.id}']::varchar[]").to_a[0]
+    unless batch.nil?
+      if batch.hackers.count == 1
+        batch.destroy
+      elsif batch.hackers.count > 1
+        batch.hackers.delete(current_user.id.to_s)
+        batch.save
+      end
+    end
+
     current_user.destroy
     head 204
   end
