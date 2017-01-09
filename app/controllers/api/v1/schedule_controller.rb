@@ -2,7 +2,7 @@ class Api::V1::ScheduleController < ApplicationController
 
   # GET /schedules
   def index
-    render json: { schedule: [
+    render json: {[
       { id: 1, title: "Sponsor Registration", description:"", time: "2017-01-20T18:00:00-05:00", location: "Bus Loop Stairwell", updatedAt: "2016-08-29T02:48:43+00:00"},
       { id: 2, title: "Hacker Registration", description:"Check in using the mobile app by showing your QR Code!", time: "2017-01-20T18:00:00-05:00", location: "B Hall / Main Stairwell", updatedAt: "2016-08-29T02:48:43+00:00"},
       { id: 3, title: "Dinner", description:"", time: "2017-01-20T19:00:00-05:00", location: "B Atrium", updatedAt: "2016-08-29T02:48:43+00:00"},
