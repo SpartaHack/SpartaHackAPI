@@ -19,7 +19,7 @@ class Api::V1::AnnouncementsController < ApplicationController
   # POST /announcements
   def create
     if ios_push && android_push
-      Rpush.push
+      Rails.logger.debug Rpush.push
       @announcement = Announcement.new(announcement_params)
 
       if @announcement.save
