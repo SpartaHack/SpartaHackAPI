@@ -66,7 +66,11 @@ class Api::V1::RsvpsController < ApplicationController
   # Only allow a trusted parameter "white list" through.
   def rsvp_params
     @rsvp_params ||= params.require(:rsvp).permit(:attending, {:dietary_restrictions => []}, :other_dietary_restrictions,
-    :resume, :shirt_size, :carpool_sharing, :jobs, :onsite).merge(:user_id => current_user.id)
+    :resume, :shirt_size, :carpool_sharing, :jobs).merge(:user_id => current_user.id)
+  end
+
+  def onsite_params
+    params.permit(:onsite)
   end
 
   def create_data_uri
@@ -87,7 +91,7 @@ class Api::V1::RsvpsController < ApplicationController
         errors[:errors][:please].push "indicate your shirt size."
       elsif rsvp_params[:carpool_sharing].blank?
         errors[:errors][:please].push "indicate your carpool sharing preference."
-      elsif rsvp_params[:resume].blank? && rsvp_params[:onsite].blank?
+      elsif rsvp_params[:resume].blank? && onsite_params[:onsite].blank?
         errors[:errors][:please].push "upload a resume as a pdf."
       elsif rsvp_params[:jobs].blank?
         errors[:errors][:please].push " choose your job preference."
