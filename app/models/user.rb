@@ -19,6 +19,7 @@
 #  role                   :integer
 #  first_name             :string
 #  last_name              :string
+#  checked_in             :boolean          default(FALSE), not null
 #
 # Indexes
 #
