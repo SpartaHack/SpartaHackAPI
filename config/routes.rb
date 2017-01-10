@@ -51,6 +51,12 @@ Rails.application.routes.draw do
       get "/schedule" => "schedule#index"
       get "/prizes" => "prizes#index"
 
+      get "/announcements" => "announcements#index"
+      post "/announcements" => "announcements#create"
+
+      get "/checkin" => "users#index_checkin"
+      post "/checkin" => "users#create_checkin"
+
       post "users/request_password_token" => "users#request_password_token"
       post "users/reset_password" => "users#reset_password"
       post "users/change_password" => "users#change_password"
@@ -74,11 +80,14 @@ Rails.application.routes.draw do
         resources :installations
 
         get "/map" => "pdf#index"
-        get "/companies" => "companies#index"
         get "/schedule" => "schedule#index"
         get "/prizes" => "prizes#index"
+
         get "/announcements" => "announcements#index"
         post "/announcements" => "announcements#create"
+
+        get "/checkin" => "checkin#index"
+        post "/checkin" => "checkin#create"
 
         post "users/request_password_token" => "users#request_password_token"
         post "users/reset_password" => "users#reset_password"
