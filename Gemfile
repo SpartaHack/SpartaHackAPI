@@ -76,7 +76,7 @@ gem 'rake'
   gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'master'
 end
 
-gem 'capistrano', '>= 3.6.1'
+gem 'capistrano', "~> 3.7"
 gem 'capistrano-rvm'
 gem 'capistrano-rails'
 gem 'capistrano-bundler'
