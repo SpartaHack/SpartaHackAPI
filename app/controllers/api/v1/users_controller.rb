@@ -1,10 +1,10 @@
 class Api::V1::UsersController < ApplicationController
   before_action :geo_ip
-  before_action :find_user_by_id, only: [:show]
+  before_action :find_user_by_id, only: [:show, :create_checkin]
   before_action :restrict_access, only: [:show, :create, :request_password_token]
-  before_action :authenticate_with_token!, only: [:index, :update, :destroy, :change_password]
+  before_action :authenticate_with_token!, only: [:index, :update, :destroy, :change_password, :checkin_index, :checkin_create]
   before_action :authenticate_password_token!, only: [:reset_password]
-  load_and_authorize_resource find_by: :id
+  load_and_authorize_resource find_by: :id, except: [:checkin_index, :checkin_create]
   respond_to :json
 
   def index
@@ -12,7 +12,6 @@ class Api::V1::UsersController < ApplicationController
 
     render json: @users
   end
-
 
   def show
     render json: User.find(params[:id]), include: [:application, :rsvp], status: 200
@@ -112,6 +111,29 @@ class Api::V1::UsersController < ApplicationController
     head 204
   end
 
+  # GET /checkin
+  def index_checkin
+    @users = User.where(checked_in: false)
+
+    render json: @users
+  end
+
+  # POST /checkin
+  def create_checkin
+    user = User.find(checkin_params[:id])
+
+    unless user.checked_in == false
+      render json: { errors: { user: ["is already checked in"] } }, status: 422 and return
+    end
+
+    user.checked_in = true
+    if user.save
+      render json: user, status: 200, location: [:api, user]
+    else
+      render json: user.errors, status: 422
+    end
+  end
+
   private
 
   def user_params
@@ -123,10 +145,14 @@ class Api::V1::UsersController < ApplicationController
     params.permit(:current_password, :password, :password_confirmation)
   end
 
+  def checkin_params
+    params.permit(:id)
+  end
+
   # render before CanCan Exception
   def find_user_by_id
     if !User.exists? id: params[:id]
-      render json: { errors: { user: ["does not exist"] } }, status: 422
+      render json: { errors: { user: ["does not exist"] } }, status: 422 and return
     end
   end
 end
