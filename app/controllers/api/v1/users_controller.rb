@@ -122,6 +122,12 @@ class Api::V1::UsersController < ApplicationController
   def create_checkin
     user = User.find(checkin_params[:id])
 
+    current_birthday = Time.zone.local(user.application.birth_year.to_i, user.application.birth_month.to_i, user.application.birth_day.to_i, 0, 0)
+    age = determine_age(current_birthday, Date.new(2017, 1, 20))
+    unless age > 18 || age < 18 && checkin_params[:forms].present? && checkin_params[:forms] == 1
+      render json: { errors: { user: ["is a minor"] } }, status: 422 and return
+    end
+
     unless user.checked_in == false
       render json: { errors: { user: ["is already checked in"] } }, status: 422 and return
     end
@@ -157,7 +163,12 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def checkin_params
-    params.permit(:id)
+    params.permit(:id, :forms)
+  end
+
+  def determine_age(dob, diq)
+    diq = diq.to_date
+    diq.year - dob.year - ((diq.month > dob.month || (diq.month == dob.month && diq.day >= dob.day)) ? 0 : 1)
   end
 
   # render before CanCan Exception
