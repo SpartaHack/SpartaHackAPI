@@ -134,6 +134,17 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  def destroy_checkin
+    user = User.find(checkin_params[:id])
+
+    user.checked_in = false
+    if user.save
+      render json: user, status: 200, location: [:api, user]
+    else
+      render json: user.errors, status: 422
+    end
+  end
+
   private
 
   def user_params

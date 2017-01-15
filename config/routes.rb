@@ -56,6 +56,7 @@ Rails.application.routes.draw do
 
       get "/checkin" => "users#index_checkin"
       post "/checkin" => "users#create_checkin"
+      delete "/checkin" => "users#destroy_checkin"
 
       post "users/request_password_token" => "users#request_password_token"
       post "users/reset_password" => "users#reset_password"

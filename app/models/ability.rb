@@ -13,6 +13,7 @@ class Ability
       can :manage, Sponsor
       can :checkin_index, User
       can :checkin_create, User
+      can :destroy_create, User
       # elsif user.has_role? :volunteer
     elsif user.has_role? :hacker
       can :update, User, :id => user.id
