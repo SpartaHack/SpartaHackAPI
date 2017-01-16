@@ -19,10 +19,10 @@ class Api::V1::AnnouncementsController < ApplicationController
   # POST /announcements
   def create
     if ios_push && android_push
-      Rails.logger.debug Rpush.push
       @announcement = Announcement.new(announcement_params)
 
       if @announcement.save
+        Rails.logger.debug Rpush.push
         render json: @announcement, status: :created, location: [:api, @announcement] and return
       else
         render json: @announcement.errors, status: :unprocessable_entity and return
