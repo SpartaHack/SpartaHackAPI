@@ -11,6 +11,7 @@ class Ability
     elsif user.has_role? :organizer
       can :manage, Faq
       can :manage, Sponsor
+      can :manage, Category
       can :checkin_index, User
       can :checkin_create, User
       can :destroy_create, User
@@ -28,6 +29,8 @@ class Ability
       can :read, [Faq, Sponsor]
       cannot :index, User
       cannot :index, Installation
+      can    :read, Category
+      can    :index, Category
     else # Just API Token
       cannot :manage, [User, Application, Rsvp, Faq, Sponsor]
       can :read, :all
@@ -37,6 +40,8 @@ class Ability
       can :read, User
       can :create, Installation
       can :read, Installation
+      can :read, Category
+      can :index, Category
     end
     # Define abilities for the passed in user here. For example:
     #

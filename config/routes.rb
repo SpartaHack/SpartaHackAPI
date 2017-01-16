@@ -31,7 +31,6 @@
 require 'api_constraints'
 
 Rails.application.routes.draw do
-
   # Api definition
   # constraints :subdomain => 'api' do
   namespace :api, path: nil, defaults: {format: 'json'} do
@@ -46,6 +45,7 @@ Rails.application.routes.draw do
       resources :rsvps
       resources :installations
       resources :announcements
+      resources :categories
 
       get "/map" => "pdf#index"
       get "/schedule" => "schedule#index"
@@ -79,6 +79,8 @@ Rails.application.routes.draw do
         resource :batch
         resources :rsvps
         resources :installations
+        resources :announcements
+        resources :categories
 
         get "/map" => "pdf#index"
         get "/schedule" => "schedule#index"
@@ -89,6 +91,7 @@ Rails.application.routes.draw do
 
         get "/checkin" => "checkin#index"
         post "/checkin" => "checkin#create"
+        delete "/checkin" => "users#destroy_checkin"
 
         post "users/request_password_token" => "users#request_password_token"
         post "users/reset_password" => "users#reset_password"
