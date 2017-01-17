@@ -8,6 +8,7 @@
 #  sponsor_id  :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  priority    :integer
 #
 # Indexes
 #
@@ -20,4 +21,6 @@
 
 class Prize < ApplicationRecord
   belongs_to :sponsor, optional: true
+
+  validates :priority, :presence => true
 end

@@ -22,6 +22,7 @@ class Api::V1::PrizesController < ApplicationController
     @prize = Prize.new(prize_params)
 
     if @prize.save
+      update_priority
       render json: @prize, status: :created, location: [:api, @prize]
     else
       render json: @prize.errors, status: :unprocessable_entity
@@ -31,6 +32,7 @@ class Api::V1::PrizesController < ApplicationController
   # PATCH/PUT /prizes/1
   def update
     if @prize.update(prize_params)
+      update_priority
       render json: @prize, location: [:api, @prize]
     else
       render json: @prize.errors, status: :unprocessable_entity
@@ -50,6 +52,12 @@ class Api::V1::PrizesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def prize_params
-    params.require(:prize).permit(:name, :description, :sponsor_id)
+    params.require(:prize).permit(:name, :description, :sponsor_id, :priority)
+  end
+
+  def update_priority
+    Prize.where("priority >= ? AND id != ?", @prize.priority, @prize.id).each {|m|
+      m.update_attribute(:priority, m.id + 1)
+    }
   end
 end
