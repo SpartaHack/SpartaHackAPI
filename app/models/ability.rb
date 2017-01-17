@@ -12,6 +12,7 @@ class Ability
       can :manage, Faq
       can :manage, Sponsor
       can :manage, Category
+      can :manage, Schedule
       can :checkin_index, User
       can :checkin_create, User
       can :destroy_create, User
@@ -42,6 +43,8 @@ class Ability
       can :read, Installation
       can :read, Category
       can :index, Category
+      can :read, Schedule
+      can :index, Schedule
     end
     # Define abilities for the passed in user here. For example:
     #
