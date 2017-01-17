@@ -9,7 +9,7 @@ class Api::V1::ScheduleController < ApplicationController
   def index
     @schedules = Schedule.all
 
-    render json: { schedule: @schedules }
+    render json: @schedules
   end
 
   # GET /schedules/1
