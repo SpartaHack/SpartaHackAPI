@@ -1,17 +1,55 @@
 class Api::V1::PrizesController < ApplicationController
-  require 'base64'
-  require 'open-uri'
+  before_action :geo_ip
+  before_action :restrict_access, only: [:show, :index]
+  before_action :authenticate_with_token!, only: [:create, :update, :destroy]
+  before_action :set_prize, only: [:show, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /prizes
   def index
-    data = Base64.encode64(open(File.join(Rails.root, "app/assets/images/preview.png")) { |f| f.read }).delete("\n")
-    p File.join(Rails.root, "app/assets/images/preview.png")
-    uri  = "data:image/png;base64,#{data}"
-    render json: { prizes: [
-      { id: 1, name: "explain to you how all this", description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco", sponsor: { id: 3, name: "SpartaSlack", logo_png:uri, level: "Warrior", url: "https://17.spartahack.com"}},
-      { id: 2, name: "At vero eos et accusamus et iusto odio", description:"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system", sponsor: { id: 3, name: "SpartaSlack", logo_png:uri, level: "Trainee", url: "https://17.spartahack.com"}},
-      { id: 3, name: "quo minus id", description:"At vero eos et accusamus et iusto odio", sponsor: { id: 2, name: "SpartaHack", logo_png:uri, level: "Warrior", url: "https://17.spartahack.com"}}
-    ] }, status: 200
+    @prizes = Prize.all
+
+    render json: @prizes
   end
 
+  # GET /prizes/1
+  def show
+    render json: @prize
+  end
+
+  # POST /prizes
+  def create
+    @prize = Prize.new(prize_params)
+
+    if @prize.save
+      render json: @prize, status: :created, location: [:api, @prize]
+    else
+      render json: @prize.errors, status: :unprocessable_entity
+    end
+  end
+
+  # PATCH/PUT /prizes/1
+  def update
+    if @prize.update(prize_params)
+      render json: @prize, location: [:api, @prize]
+    else
+      render json: @prize.errors, status: :unprocessable_entity
+    end
+  end
+
+  # DELETE /prizes/1
+  def destroy
+    @prize.destroy
+  end
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_prize
+    @prize = Prize.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def prize_params
+    params.require(:prize).permit(:name, :description, :sponsor_id)
+  end
 end

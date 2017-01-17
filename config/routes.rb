@@ -47,10 +47,10 @@ Rails.application.routes.draw do
       resources :announcements
       resources :categories
       resources :schedule
+      resources :prizes
 
 
       get "/map" => "pdf#index"
-      get "/prizes" => "prizes#index"
 
       get "/announcements" => "announcements#index"
       post "/announcements" => "announcements#create"
@@ -83,9 +83,9 @@ Rails.application.routes.draw do
         resources :announcements
         resources :categories
         resource  :schedule
+        resources :prizes
 
         get "/map" => "pdf#index"
-        get "/prizes" => "prizes#index"
 
         get "/announcements" => "announcements#index"
         post "/announcements" => "announcements#create"
