@@ -51,6 +51,7 @@ Rails.application.routes.draw do
 
 
       get "/map" => "pdf#index"
+      get "/map/dark" => "pdf#dark"
 
       get "/announcements" => "announcements#index"
       post "/announcements" => "announcements#create"
@@ -86,6 +87,7 @@ Rails.application.routes.draw do
         resources :prizes
 
         get "/map" => "pdf#index"
+        get "/map/dark" => "pdf#dark"
 
         get "/announcements" => "announcements#index"
         post "/announcements" => "announcements#create"
