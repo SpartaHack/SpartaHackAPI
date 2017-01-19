@@ -14,6 +14,7 @@ class Ability
       can :manage, Category
       can :manage, Schedule
       can :manage, Hardware
+      can :manage, Resource
       can :checkin_index, User
       can :checkin_create, User
       can :destroy_create, User
@@ -48,6 +49,8 @@ class Ability
       can :index, Schedule
       can :read, Hardware
       can :index, Hardware
+      can :read, Resource
+      can :index, Resource
     end
     # Define abilities for the passed in user here. For example:
     #

@@ -49,6 +49,7 @@ Rails.application.routes.draw do
       resources :schedule
       resources :hardware
       resources :prizes
+      resources :resources
 
 
       get "/map" => "pdf#index"
@@ -87,6 +88,7 @@ Rails.application.routes.draw do
         resource  :schedule
         resources :hardware
         resources :prizes
+        resources :resources
 
         get "/map" => "pdf#index"
         get "/map/dark" => "pdf#dark"

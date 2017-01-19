@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170119064924) do
+ActiveRecord::Schema.define(version: 20170119080600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,6 +118,15 @@ ActiveRecord::Schema.define(version: 20170119064924) do
     t.datetime "updated_at",  null: false
     t.integer  "priority"
     t.index ["sponsor_id"], name: "index_prizes_on_sponsor_id", using: :btree
+  end
+
+  create_table "resources", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.string   "url",        null: false
+    t.integer  "sponsor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sponsor_id"], name: "index_resources_on_sponsor_id", using: :btree
   end
 
   create_table "rpush_apps", force: :cascade do |t|
@@ -241,5 +250,6 @@ ActiveRecord::Schema.define(version: 20170119064924) do
   add_foreign_key "faqs", "users"
   add_foreign_key "installations", "users"
   add_foreign_key "prizes", "sponsors"
+  add_foreign_key "resources", "sponsors"
   add_foreign_key "rsvps", "users"
 end
