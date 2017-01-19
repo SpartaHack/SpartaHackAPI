@@ -47,6 +47,7 @@ Rails.application.routes.draw do
       resources :announcements
       resources :categories
       resources :schedule
+      resources :hardware
       resources :prizes
 
 
@@ -84,6 +85,7 @@ Rails.application.routes.draw do
         resources :announcements
         resources :categories
         resource  :schedule
+        resources :hardware
         resources :prizes
 
         get "/map" => "pdf#index"
