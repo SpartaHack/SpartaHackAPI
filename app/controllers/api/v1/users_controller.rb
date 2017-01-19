@@ -124,7 +124,7 @@ class Api::V1::UsersController < ApplicationController
 
     current_birthday = Time.zone.local(user.application.birth_year.to_i, user.application.birth_month.to_i, user.application.birth_day.to_i, 0, 0)
     age = determine_age(current_birthday, Date.new(2017, 1, 20))
-    unless age > 18 || age < 18 && checkin_params[:forms].present? && checkin_params[:forms] == 1
+    unless age > 18 || age < 18 && checkin_params[:forms].present? && checkin_params[:forms].to_i == 1
       render json: { errors: { user: ["is a minor"] } }, status: 422 and return
     end
 
