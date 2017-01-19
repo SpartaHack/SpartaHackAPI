@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170117040347) do
+ActiveRecord::Schema.define(version: 20170119062122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,10 +77,11 @@ ActiveRecord::Schema.define(version: 20170117040347) do
     t.string   "question"
     t.text     "answer"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean  "display",    null: false
-    t.integer  "priority",   null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "display",                     null: false
+    t.integer  "priority",                    null: false
+    t.string   "placement",  default: "home", null: false
     t.index ["user_id"], name: "index_faqs_on_user_id", using: :btree
   end
 
@@ -107,7 +108,7 @@ ActiveRecord::Schema.define(version: 20170117040347) do
     t.integer  "sponsor_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "priority",    null: false
+    t.integer  "priority"
     t.index ["sponsor_id"], name: "index_prizes_on_sponsor_id", using: :btree
   end
 

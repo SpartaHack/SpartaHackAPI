@@ -10,6 +10,7 @@
 #  updated_at :datetime         not null
 #  display    :boolean          not null
 #  priority   :integer          not null
+#  placement  :string           default("home"), not null
 #
 # Indexes
 #

@@ -55,7 +55,7 @@ class Api::V1::FaqsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def faq_params
-    params.require(:faq).permit(:question, :answer, :display, :priority).merge(:user_id => current_user.id)
+    params.require(:faq).permit(:question, :answer, :display, :priority, :placement).merge(:user_id => current_user.id)
   end
 
   def update_priority
