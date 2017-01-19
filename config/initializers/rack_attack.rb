@@ -9,6 +9,13 @@ class Rack::Attack
     '127.0.0.1' == req.ip || '::1' == req.ip
   end
 
+  # Allow all local traffic
+  safelist('allow from 45.55.190.133') do |req|
+    '45.55.190.133' == req.ip
+  end
+
+
+
   # Allow an IP address to make 10 requests every 5 seconds
   throttle('req/ip', limit: 10, period: 5) do |req|
     req.ip
