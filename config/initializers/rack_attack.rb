@@ -10,9 +10,16 @@ class Rack::Attack
   end
 
   # Allow all local traffic
-  safelist('allow from 45.55.190.133') do |req|
+  safelist('allow from prod site') do |req|
     '45.55.190.133' == req.ip
   end
+
+  # Allow all local traffic
+  safelist('allow from dev site') do |req|
+    '104.236.30.243' == req.ip
+  end
+
+
 
 
 
