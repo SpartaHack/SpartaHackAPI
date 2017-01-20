@@ -18,7 +18,12 @@ class Ability
       can :checkin_index, User
       can :checkin_create, User
       can :destroy_create, User
-      # elsif user.has_role? :volunteer
+    elsif user.has_role? :volunteer
+      can :checkin_index, User
+      can :checkin_create, User
+      can :destroy_create, User
+      can    :read, Category
+      can    :index, Category
     elsif user.has_role? :hacker
       can :update, User, :id => user.id
       can :read, User, :id => user.id

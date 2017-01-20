@@ -125,6 +125,10 @@ class Api::V1::UsersController < ApplicationController
   def create_checkin
     user = User.find(checkin_params[:id])
 
+    if user.rsvp.nil?
+      render json: { errors: { user: ["does not have an rsvp"] } }, status: 422 and return
+    end
+
     current_birthday = Time.zone.local(user.application.birth_year.to_i, user.application.birth_month.to_i, user.application.birth_day.to_i, 0, 0)
     age = determine_age(current_birthday, Date.new(2017, 1, 20))
     unless age > 18 || age < 18 && checkin_params[:forms].present? && checkin_params[:forms].to_i == 1
