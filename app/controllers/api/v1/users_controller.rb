@@ -8,17 +8,16 @@ class Api::V1::UsersController < ApplicationController
   respond_to :json
 
   def index
-    @users = User.all
-
-    render json: @users
+    if !params[:email].blank?
+      render json: User.where('email = ?', params[:email]), status: 200
+    else
+      @users = User.all
+      render json: @users
+    end
   end
 
   def show
-    if !params[:email].blank?
-      render json: User.find_by(email: params[:id]), include: [:application, :rsvp], status: 200
-    else
-      render json: User.find(params[:id]), include: [:application, :rsvp], status: 200
-    end
+    render json: User.find(params[:id]), include: [:application, :rsvp], status: 200
   end
 
   def create
