@@ -19,6 +19,7 @@ class Ability
       can :checkin_create, User
       can :destroy_create, User
     elsif user.has_role? :volunteer
+      can :manage, :all
       can :checkin_index, User
       can :checkin_create, User
       can :destroy_create, User
