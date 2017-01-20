@@ -14,7 +14,11 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def show
-    render json: User.find(params[:id]), include: [:application, :rsvp], status: 200
+    if !params[:email].blank?
+      render json: User.find_by(email: params[:id]), include: [:application, :rsvp], status: 200
+    else
+      render json: User.find(params[:id]), include: [:application, :rsvp], status: 200
+    end
   end
 
   def create
