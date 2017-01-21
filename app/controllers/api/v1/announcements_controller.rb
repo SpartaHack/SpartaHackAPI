@@ -65,9 +65,9 @@ class Api::V1::AnnouncementsController < ApplicationController
         n = Rpush::Apns::Notification.new
         n.app = Rpush::Apns::App.find_by_name(ENV['IOS_PUSH_CERT_NAME'])
         n.device_token = device.token # 64-character hex string
-        n.alert = announcement_params[:title]
+        n.alert =  announcement_params[:title] + " \r\n " + announcement_params[:description]
         n.data = {
-          alert: announcement_params[:title],
+          alert: announcement_params[:title] + " \r\n " + announcement_params[:description],
           badge: "Increment",
           sound: "default",
           title: announcement_params[:title],
