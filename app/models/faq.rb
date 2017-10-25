@@ -27,4 +27,5 @@ class Faq < ActiveRecord::Base
   validates :question, :presence => true
   validates :answer, :presence => true
   validates :priority, :presence => true
+  validates :display, :presence => true
 end
