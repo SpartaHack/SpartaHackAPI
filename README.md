@@ -1,3 +1,4 @@
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 [![Build Status](https://travis-ci.org/SpartaHack/SpartaHack-API.svg?branch=master)](https://travis-ci.org/SpartaHack/SpartaHack-API)
 [![Code Climate](https://codeclimate.com/github/SpartaHack/SpartaHack-API/badges/gpa.svg)](https://codeclimate.com/github/SpartaHack/SpartaHack-API)
 [![Test Coverage](https://codeclimate.com/github/SpartaHack/SpartaHack-API/badges/coverage.svg)](https://codeclimate.com/github/SpartaHack/SpartaHack-API/coverage)
@@ -7,7 +8,7 @@
 # SpartaHack API
 ****
 
-**Note**: This repository is no longer being maintained and is therefore being archived.
+**Note**: This repository is no longer being maintained and is therefore being archived. Please consider using the newer [SpartaHack-API](https://github.com/SpartaHack/SpartaHack-API)
 ****
 
 This is a guide for running a local copy of SpartaHack API at http://api.spartahack-api.dev/
