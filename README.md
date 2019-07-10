@@ -3,7 +3,11 @@
 [![Test Coverage](https://codeclimate.com/github/SpartaHack/SpartaHack-API/badges/coverage.svg)](https://codeclimate.com/github/SpartaHack/SpartaHack-API/coverage)
 [![Issue Count](https://codeclimate.com/github/SpartaHack/SpartaHack-API/badges/issue_count.svg)](https://codeclimate.com/github/SpartaHack/SpartaHack-API)
 
+
 # SpartaHack API
+****
+
+**Note**: This repository is no longer being maintained and is therefore being archived.
 ****
 
 This is a guide for running a local copy of SpartaHack API at http://api.spartahack-api.dev/
